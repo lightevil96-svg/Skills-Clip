@@ -3,7 +3,7 @@
 ## Baseline and audit scope
 
 Audit base: `82ced39b89452e36ca4e06ee520af1c50300d561` on `main`.
-Read all 23 tracked files before editing. No source footage, rendered clips,
+Read all 22 tracked files before editing. No source footage, rendered clips,
 media fixtures, CI workflow, or executable render engine existed at this base.
 The baseline structural validator passed for all 11 skills.
 
