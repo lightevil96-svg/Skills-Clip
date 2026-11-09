@@ -1,0 +1,10 @@
+{
+  "source_file": "audio_asr.wav",
+  "language": "id",
+  "asr_model": "example-model",
+  "verification_policy": "human-listen-required",
+  "speakers": [{"speaker_id": "S1", "display_name": null, "avatar_ref": null, "mapping_status": "UNKNOWN"}],
+  "words": [
+    {"start": 0.0, "end": 0.2, "text": "[DUMMY_WORD]", "speaker_id": "S1", "asr_confidence": null, "verification_status": "ASR_RAW", "verified_by": null, "notes": "Placeholder, not a real quote."}
+  ]
+}
