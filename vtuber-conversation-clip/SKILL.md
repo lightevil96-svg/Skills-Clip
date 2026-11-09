@@ -21,13 +21,15 @@ The reference is a 23.6-second, 9:16 conversation clip. It is not a gameplay mon
 6. **Protect the original voices.** Dialogue is the primary audio. Optional music and sound effects must sit underneath it and must not mask speech.
 7. **Do not force a generic hook or CTA.** The reference starts directly in the conversation and ends on a reaction/laugh. Keep that structure unless the user asks for a hook, title card, or follow CTA.
 8. **Do not copy unrelated assets.** Recreate the visual function of an insert, not a specific logo, character sticker, or copyrighted image from the reference unless the user supplies or requests it.
+9. **Direct the camera to the speaker.** When only one VTuber is speaking, show that speaker alone in a close or medium-close shot. When two VTubers speak simultaneously or overlap in the same exchange, use one shared two-shot that shows both together. Return to a solo shot as soon as only one person is speaking again.
+10. **Never solve vertical reframing with a permanent multi-panel layout.** Do not stack a full-scene/board panel above an enlarged-character panel, use persistent split-screen, picture-in-picture, or duplicate the same scene into multiple panels. These are prohibited unless the user explicitly requests them.
 
 ## Style identity
 
 Use these as reference anchors, not rigid presets:
 
 - **Canvas:** vertical 9:16. The supplied reference is 360×640 at 30 fps; for a clean final render, use 1080×1920 at 30 fps.
-- **Framing:** one main avatar in a medium or medium-close crop, usually centered. Alternate to the next speaker when the conversation changes. Use a two-shot or split composition only when seeing both reactions helps the joke.
+- **Framing:** speaker-directed single shots are the default. Cut to a medium or medium-close crop of the person currently speaking. Use one shared two-shot only while both speakers are speaking/overlapping or when a simultaneous reaction is essential. Never use a persistent split-screen, stacked panels, or picture-in-picture.
 - **Pacing:** conversational jump cuts, usually around 1–3 seconds per visual beat in the reference. Let a reaction breathe when it is funny; do not shorten every shot to the same duration.
 - **Subtitles:** rounded, bold sans-serif appearance; colored fill per speaker; thick light outline and a restrained dark shadow for contrast. Ordinary dialogue captions have no opaque caption box in the reference.
 - **Placement:** generally centered in the lower-middle area, adjusted shot by shot to avoid faces and important UI. Use one or two short lines, not paragraph blocks.
@@ -60,12 +62,17 @@ The reference's broad rhythm is an observation, a word/color misunderstanding, a
 
 ### 3. Select and reframe shots
 
+**Mandatory camera-directing rule — decide who is on camera for every dialogue beat before rendering.** Build a shot list with timecode, speaker, and framing. The edit must behave like a camera operator switching between the people who are talking, not like a fixed collage.
+
 - Start as close as possible to the first meaningful line; remove dead air before it.
-- Use the active speaker's medium-close crop for the line.
-- Cut to another avatar when they speak or when their reaction is the joke.
-- Use a two-shot when simultaneous reactions matter; otherwise prefer a clean single-speaker crop.
+- **One person speaking:** show that speaker as the primary and normally only avatar in frame. Reframe/pan/zoom to their face and upper body. Do not leave the camera on a silent co-host merely because both avatars fit in the source frame.
+- **Both people speaking at once / overlapping dialogue:** use one shared two-shot in which both avatars are visible together in the same continuous composition. Do not make two separate stacked or side-by-side panels.
+- **Speaker changes:** cut to the new speaker at the next natural conversational boundary. Do not keep the previous speaker's crop after the other person takes over.
+- **Silent reaction:** a brief cutaway to the listener is allowed only when the reaction itself adds a joke or meaningful emotional beat. Return to the active speaker when their dialogue continues; do not turn the listener into a permanent second panel.
+- **Board or screen content:** show it as a short, deliberate insert only when the speaker refers to it or it is essential to understanding the lesson. It must not remain as a permanent top panel while character footage runs below.
+- **Landscape-to-vertical conversion:** choose a new crop for each shot according to the active speaker(s). If one speaker is talking, crop to that speaker; if both are talking, widen/pan to include both. Never solve 16:9-to-9:16 conversion by stacking a board view and a character view.
 - Keep the crop stable enough to read expressions. Add a small punch-in only for a clear emphasis, not as constant motion.
-- Keep useful source UI in frame when it establishes who is speaking or shows a relevant chat/emote. Do not preserve irrelevant empty strips just because they exist in the reference.
+- Keep useful source UI in frame only when it establishes who is speaking or shows a relevant chat/emote. Do not preserve irrelevant empty strips just because they exist.
 
 ### 4. Build subtitles
 
@@ -117,6 +124,10 @@ The detailed workflow is in [references/render-workflow.md](references/render-wo
 - [ ] Every subtitle is supported by audible speech or user-provided text.
 - [ ] Speaker colors remain consistent.
 - [ ] Cuts follow the exchange and preserve reaction timing.
+- [ ] Every solo dialogue beat frames the person actually speaking.
+- [ ] Overlapping dialogue uses one shared two-shot that contains both speakers.
+- [ ] No persistent stacked panels, split-screen, picture-in-picture, or duplicated scene layout appears unless explicitly requested.
+- [ ] Board/screen inserts appear only when contextually necessary, not as a permanent second panel.
 - [ ] Faces and mouths remain visible during important lines.
 - [ ] Meme/sticker overlays are readable, relevant, and do not cover expressions.
 - [ ] Any Japanese text, reading, or translation is labeled correctly.
@@ -128,3 +139,5 @@ The detailed workflow is in [references/render-workflow.md](references/render-wo
 ## Anti-patterns
 
 Do not automatically import a gameplay-highlight template into this style: no racing HUD, countdown timer, leaderboard narration, neon VTuber-card ring, constant beat-synced zoom, teaser countdown, or mandatory follow CTA unless the footage or user explicitly calls for them. Those elements belong to a different edit format.
+
+Also do not turn the conversation into a fixed collage: no permanent top/bottom layout with the board above and enlarged avatars below, no duplicate full-scene plus zoomed-scene panels, no persistent split-screen, and no picture-in-picture. The camera must follow the active speaker; show both together only when both are speaking/overlapping or a simultaneous reaction is the actual point.
