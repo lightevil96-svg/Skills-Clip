@@ -15,7 +15,7 @@ choose a new story while preserving this skill's speaker-follow camera rules.
 
 ## Non-negotiable rules
 
-1. **Do not invent dialogue.** Captions must match verified speech or text supplied by the user. If speech cannot be transcribed reliably, ask for a transcript or omit uncertain words.
+1. **Do not invent dialogue.** Captions must match verified speech or a transcript explicitly confirmed by the user. A user-uploaded ASR draft is still unverified. If speech cannot be transcribed reliably, request confirmation or omit uncertain words.
 2. **Keep speaker identity consistent.** Assign one subtitle color to each known speaker and keep it stable throughout the clip. If speaker identity is uncertain, do not guess; use neutral styling until confirmed.
 3. **Cut for the conversation.** Prefer cuts at speaker turns, expression changes, punchlines, and reaction holds. Do not cut on an arbitrary beat if it damages the exchange.
 4. **Keep faces readable.** Reframe around the active speaker's face and upper body. Never let captions, stickers, or meme inserts obscure the eyes or mouth during important dialogue.
@@ -30,7 +30,7 @@ choose a new story while preserving this skill's speaker-follow camera rules.
 
 Use these as reference anchors, not rigid presets:
 
-- **Canvas:** vertical 9:16. The supplied reference is 360×640 at 30 fps; for a clean final render, use 1080×1920 at 30 fps.
+- **Canvas:** vertical 9:16. The supplied reference is 360×640 at 30 fps. Use 1080×1920 for the default final canvas; choose frame rate from the actual source and brief, not the reference's 30 fps.
 - **Framing:** speaker-directed single shots are the default. Cut to a medium or medium-close crop of the person currently speaking. Use one shared two-shot only while both speakers are speaking/overlapping or when a simultaneous reaction is essential. Never use a persistent split-screen, stacked panels, or picture-in-picture.
 - **Pacing:** conversational jump cuts, usually around 1–3 seconds per visual beat in the reference. Let a reaction breathe when it is funny; do not shorten every shot to the same duration.
 - **Subtitles:** rounded, bold sans-serif appearance; colored fill per speaker; thick light outline and a restrained dark shadow for contrast. Ordinary dialogue captions have no opaque caption box in the reference.
@@ -117,7 +117,7 @@ Use a small number of context-specific visual inserts:
 
 ### 7. Render and package
 
-Default final target: 1080×1920, 30 fps, H.264 video, yuv420p, AAC audio at 48 kHz, with fast-start enabled. Match the source frame rate if there is a specific reason to do so.
+Default final target: 1080×1920, source frame rate, H.264 video, yuv420p, AAC audio at 48 kHz, with fast-start enabled. Record a project reason and inspect motion whenever changing frame rate.
 
 When the user wants a render package rather than a finished render:
 
@@ -133,7 +133,7 @@ The detailed workflow is in [references/render-workflow.md](references/render-wo
 ## Quality-control checklist
 
 - [ ] The opening begins on a meaningful spoken line.
-- [ ] Every subtitle is supported by audible speech or user-provided text.
+- [ ] Every subtitle is supported by source-audio verification or explicitly user-confirmed transcript text.
 - [ ] Speaker colors remain consistent.
 - [ ] Cuts follow the exchange and preserve reaction timing.
 - [ ] Every solo dialogue beat frames the person actually speaking.

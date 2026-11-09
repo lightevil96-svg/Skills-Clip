@@ -35,7 +35,7 @@ Then:
 Unless the user requests another format:
 
 - Canvas: 1080×1920 (9:16).
-- Frame rate: 30 fps.
+- Frame rate: match the actual source. Use 30 fps only when the source or an explicit project decision supports it; the sample's frame rate is not universal.
 - Video: H.264, `yuv420p`, square pixels (`setsar=1`), fast-start enabled.
 - Audio: AAC, 48 kHz, stereo.
 - Keep the original voice synchronized and intelligible.
