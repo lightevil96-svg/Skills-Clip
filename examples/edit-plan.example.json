@@ -1,0 +1,12 @@
+{
+  "project": {"title": "VTuber highlight", "target_platforms": ["youtube-shorts"], "language": "id", "notes": "Dummy example; replace with real source evidence."},
+  "source": {"path": "SOURCE_VIDEO.mp4", "duration_s": 60, "width": 1920, "height": 1080, "fps": 60, "audio_present": true, "ffmpeg_version": null},
+  "routing": {"primary_route": "vtuber-gameplay-facecam-clip", "supporting_routes": ["hook-pacing-retention", "ffmpeg-vertical-quality"], "footage_type": "gameplay+facecam", "speakers_visible": 1, "speakers_verified": false, "visual_evidence": ["gameplay", "hud", "avatar"], "unknowns": ["dialogue_not_verified"]},
+  "clip": {"in_s": 12, "out_s": 29, "hook": "Not yet selected", "payoff": "Not yet verified", "context_preserved": false, "candidate_score_0_12": null},
+  "speakers": [{"speaker_id": "S1", "display_name": null, "avatar_ref": null, "mapping_status": "UNKNOWN"}],
+  "shots": [{"id": "shot-001", "in_s": 12, "out_s": 29, "layout": "blur-fit", "crop": null, "primary_subject": "gameplay+avatar", "reason": "Placeholder; choose after frame inspection.", "caption_ids": [], "overlay_ids": []}],
+  "captions": [],
+  "audio": {"voice_priority": true, "bgm_used": false, "sfx_used": false, "ducking_db": null, "target_lufs": -15, "true_peak_db": -1, "human_listen_required": true},
+  "assets": [],
+  "qa": {"status": "NOT_RUN", "checks": []}
+}
