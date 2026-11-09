@@ -24,7 +24,22 @@ These values describe this one reference file. They are not mandatory values for
 - The source includes a narrow upper strip with stream/chat information at some moments, separated from the main character area by a pale horizontal divider. Names and emotes in this strip sometimes reinforce the joke.
 - The clip alternates among three visible speaker presentations: a white-haired character, a red/pink-haired character, and a brown-haired character.
 - The edit cuts to the current speaker, then occasionally widens to a two-character reaction shot when both expressions matter.
+- Camera coverage is conversational and shot-based: one speaker gets a solo crop; simultaneous/overlapping speakers get one shared two-shot; when the turn changes, the camera changes with it.
 - The original scene/background is retained. The edit does not replace it with a blurred duplicate background or a new graphic layout.
+- The board/chat area is part of the original scene, not a permanent separate panel. It may receive a brief insert when it is relevant to the spoken explanation.
+
+### Camera coverage — critical rule
+
+The visual grammar is **speaker-following camera cuts**, not a fixed multi-panel composition:
+
+1. If only one VTuber is speaking, frame that VTuber alone in a medium or medium-close crop. The other avatar should not remain as a permanent second panel.
+2. If both VTubers speak simultaneously, overlap each other's lines, or their shared exchange is the point, use one continuous two-shot containing both avatars together.
+3. When one speaker takes over, cut back to that speaker's solo crop at the next natural boundary.
+4. A listener reaction may appear as a short cutaway only if the expression itself is the joke; then return to the speaker.
+5. Never stack the full board/source scene in a top panel and an enlarged duplicate of the avatars in a bottom panel. Never use persistent split-screen, picture-in-picture, or duplicate views to fill a 9:16 canvas unless the user explicitly asks for that design.
+6. For a landscape source, create shot-specific crops: solo crop for one speaker, wider shared crop for two speakers, and an occasional board insert only when the spoken content refers to it. Do not force the board to stay visible throughout the clip.
+
+A render that keeps two separate panels on screen for the whole conversation fails this style even if its colors, borders, music, and vertical dimensions look polished.
 
 ### Subtitle treatment
 
@@ -85,6 +100,12 @@ Times are approximate, read from the 1 fps/2 fps frame inspection. Recheck exact
 | 17.8–18.9 s | Red/pink-haired character. | Pink-red clarification/interjection. |
 | 18.9–21.5 s | Brown-haired character close-up, holding the reaction. | Recognition beat; short beige captions near the end. |
 | 21.5–23.6 s | Brown-haired character; laughter doodles animate around the head. | Neutral white/black-outlined caption lands the final laugh. |
+
+## Anti-patterns observed in later adaptations
+
+A later vertical adaptation used a static top/bottom layout: the full lesson board was placed in the upper panel while a zoomed view of both VTubers remained in the lower panel. This is **not** the reference style. It hides the conversational camera language and makes every moment look like a fixed collage.
+
+For future edits, reject that layout during pre-render review. The camera must follow the active speaker with solo framing, then use a single shared two-shot only when both people are speaking/overlapping or their simultaneous reaction matters.
 
 ## What makes the style work
 
