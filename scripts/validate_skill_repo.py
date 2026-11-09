@@ -15,6 +15,10 @@ REQUIRED = [
     "Tujuan", "Aturan wajib", "Langkah kerja", "Potongan FFmpeg",
     "Checklist QA", "Kesalahan umum", "Batas kemampuan AI",
 ]
+CONVERSATION_REQUIRED = [
+    "Objective", "Non-negotiable rules", "Editing workflow",
+    "Quality-control checklist", "Anti-patterns",
+]
 
 def main():
     errors = []
@@ -39,7 +43,8 @@ def main():
         if not desc or len(desc.group(1).strip()) < 30:
             errors.append(f"{folder}: description missing or too short")
         content = body[end + 4:]
-        for heading in REQUIRED:
+        required = CONVERSATION_REQUIRED if folder == "vtuber-conversation-clip" else REQUIRED
+        for heading in required:
             if heading.lower() not in content.lower():
                 errors.append(f"{folder}: missing section {heading}")
         if content.count("~~~~") % 2:
