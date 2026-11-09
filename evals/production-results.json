@@ -16,7 +16,7 @@
       "name": "regression_and_media_tests",
       "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest discover -s tests -v",
       "status": "PASS",
-      "test_count": 90,
+      "test_count": 91,
       "skipped": false,
       "media_test_count": 11
     },
@@ -38,8 +38,22 @@
     }
   ],
   "ci": {
-    "status": "NOT_RUN",
-    "reason": "Development changes not yet pushed for this follow-up"
+    "status": "FAIL",
+    "commit": "6b799ff2b987b4eeef6e1245a64e000ff61e8209",
+    "ubuntu": {
+      "status": "PASS",
+      "test_count": 90,
+      "skipped": false,
+      "package_checks": 10,
+      "ffmpeg": "6.1.1-3ubuntu5",
+      "url": "https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42668302043"
+    },
+    "windows": {
+      "status": "FAIL",
+      "ffmpeg": "9.0.2",
+      "url": "https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42668315104",
+      "reason": "Initial run: removed filter_complex_script flag and checkout CRLF changed legacy fixture hash; fixed in follow-up, rerun pending."
+    }
   },
   "not_run": [
     "real-footage Gates 1\u20138",
@@ -63,6 +77,9 @@
   ],
   "resolved_failures": [
     "FFprobe bounded decoding initially omitted a delayed B-frame; decode margin added before timestamp filtering.",
-    "concat output initially lacked the last frame duration; declare proven native CFR to preserve frame count and average FPS."
+    "concat output initially lacked the last frame duration; declare proven native CFR to preserve frame count and average FPS.",
+    "Renderer accessed optional assets/ducking fields directly; added absent-field regression and schema-compatible defaults.",
+    "Windows FFmpeg 9.0.2 removed filter_complex_script; replaced with a single filter_complex argv argument and portable length limit.",
+    "Windows checkout changed legacy example line endings; added repository LF attributes so original JSON bytes remain reproducible."
   ]
 }

@@ -49,7 +49,7 @@ def check_supported(plan, *, width, height, captions, transcript=None):
         raise ValueError('Output must have positive even dimensions no larger than 4096')
     if len(plan['shots']) > 100 or plan['clip']['out_s'] - plan['clip']['in_s'] > 600:
         raise ValueError('Preview renderer is bounded to 100 shots and a 600-second source envelope')
-    if plan['assets'] or plan['audio']['sfx_used'] or plan['audio']['bgm_used'] or plan['audio']['ducking_db'] is not None:
+    if plan.get('assets') or plan['audio']['sfx_used'] or plan['audio']['bgm_used'] or plan['audio'].get('ducking_db') is not None:
         raise ValueError('Asset compositing, SFX, BGM and ducking require a separate tested renderer')
     if plan['editorial']['style_application']['applied_traits']:
         raise ValueError('Style traits are not implemented by this renderer; use a compatible renderer')
@@ -188,8 +188,10 @@ def render(plan_path, source_path, output_dir, *, width=1080, height=1920, capti
         (output/'captions.ass').write_text(ass, encoding='utf-8')
     (output/'filtergraph.txt').write_text(graph, encoding='utf-8')
     write_json(output/'plan-snapshot.json', plan)
+    # Pass the graph as ONE argv element. The old filter_complex_script option
+    # is absent in newer builds; inline filter_complex works across tested builds.
     argv = ['ffmpeg', '-nostdin', '-hide_banner', '-v', 'error', '-n', '-i', str(Path(source_path).resolve()),
-            '-filter_complex_script', 'filtergraph.txt', '-map', '[video]']
+            '-filter_complex', graph, '-map', '[video]']
     if source['audio_present']:
         argv += ['-map', '[audio]', '-c:a', 'aac', '-b:a', '192k', '-ar', '48000']
     native_rate = next(s['avg_frame_rate'] for s in data['streams'] if s['codec_type'] == 'video')
@@ -197,6 +199,8 @@ def render(plan_path, source_path, output_dir, *, width=1080, height=1920, capti
     # encoder assigns the final frame its full duration; do not choose a new FPS.
     argv += ['-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p',
              '-r', native_rate, '-fps_mode', 'cfr', '-movflags', '+faststart', 'preview.mp4']
+    if len(subprocess.list2cmdline(argv)) > 28000:
+        raise ValueError('Filtergraph exceeds the portable command-length budget; use a tested segmented renderer')
     write_json(output/'command.json', {'argv': argv, 'cwd': str(output),
                                      'note': 'argv JSON, not a shell command. Input source remains external.'})
     run(argv, cwd=output)

@@ -124,6 +124,11 @@ class RendererContractTests(unittest.TestCase):
         self.assertEqual(validate('edit-plan', self.plan)[0], [])
         self.assertEqual(self.check(), [])
 
+    def test_optional_assets_and_ducking_may_be_absent(self):
+        self.plan.pop('assets')
+        self.plan['audio'].pop('ducking_db')
+        self.assertEqual(self.check(), [])
+
     def test_unverified_caption_burn_rejected(self):
         transcript = caption_fixture(self.plan)
         self.plan['captions'][0]['verification_status'] = 'ASR_RAW'

@@ -101,6 +101,8 @@ style traits, assets/effects, changing-size zoom, retiming, music, SFX, ducking,
 animated/translated captions and VFR input are unsupported and rejected. Use an
 appropriate tested renderer/NLE, or revise the EDL to a genuinely acceptable
 simpler alternative. Never strip fields simply to bypass the check.
+Plans also have a portable 28,000-character command budget. Longer graphs need
+a separately tested segmented renderer; the tool will not truncate the graph.
 
 The work directory records the plan snapshot, argv command, filtergraph, output
 probe, output hash and technical receipt. Output is always `preview.mp4` with
