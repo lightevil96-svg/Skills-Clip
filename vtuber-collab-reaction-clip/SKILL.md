@@ -53,6 +53,18 @@ Gunakan urutan pemicu → respons pertama → eskalasi → reaksi grup → payof
 - Jika dua speaker overlap, pecah caption menjadi baris terpisah dengan timestamp yang benar; jangan mengurutkan ulang.
 - Jangan menurunkan suara orang lain sampai hilang jika overlap itu penting.
 
+### 6. Handoff reaksi dan hierarki
+Gunakan [editorial-intelligence](../editorial-intelligence/SKILL.md) untuk source
+evidence, beat dan keputusan kamera. Tandai onset pemicu, respons pertama,
+interupsi dan group laughter secara terpisah. Kamera boleh hold pada ekspresi
+yang relevan, tetapi harus kembali mengikuti pembicara aktif setelah cutaway.
+Jangan menggeser tawa untuk membuat respons tampak lebih cepat atau lebih lucu.
+
+Prioritaskan speaker/reaksi yang menjelaskan beat. Shared shot tidak berarti
+semua avatar wajib masuk. Pada tiga atau lebih suara, gunakan caption hierarchy
+yang dapat dibaca dan tandai ucapan tak jelas; jangan mengecilkan teks terus
+agar seluruh suara muat. Pemetaan speaker dan warna tetap memerlukan bukti.
+
 ## Potongan FFmpeg
 Contoh dua crop yang disambung secara editorial harus menggunakan timestamp shot yang jelas. Hindari membangun split-screen permanen hanya karena lebih mudah dirender.
 

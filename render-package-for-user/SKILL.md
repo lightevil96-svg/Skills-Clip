@@ -10,7 +10,7 @@ Membuat paket yang bisa dijalankan pengguna di PC atau Colab tanpa memasukkan vi
 
 ## Aturan wajib
 1. Jangan pernah memasukkan video sumber pengguna ke ZIP.
-2. FFmpeg 6–8 adalah satu-satunya dependensi wajib untuk render dasar.
+2. FFmpeg/FFprobe adalah dependensi render dasar; catat versi, encoder dan filter yang benar-benar dipakai. Jangan mengklaim semua build 6–8 sudah diuji.
 3. Python/NumPy/WhisperX/model ASR hanya opsional dan dijelaskan terpisah.
 4. Script menerima input path dan output path; jangan hard-code path komputer pembuat.
 5. Jangan memakai filter_complex_script.
@@ -52,6 +52,13 @@ Folder kosong tidak perlu dibuat.
 - Probe hasil.
 - Pastikan tidak ada source video di ZIP.
 - Periksa ukuran ZIP dan file MP4.
+
+Sertakan decision brief dari [editorial-intelligence](../editorial-intelligence/SKILL.md)
+dalam edit plan, source checksum/metadata, clock mapping, versi tool, command,
+font/aset/lisensi, dan status review. Jangan mengemas data placeholder sebagai
+hasil yang sudah diverifikasi. Jalankan validator artifact dengan stage final
+untuk master final; paket draft harus melaporkan REVIEW/NOT_RUN secara jelas.
+Dependensi Python/jsonschema untuk validasi developer terpisah dari render dasar.
 
 ### 4. Instruksi HP/Colab
 1. Buka Google Colab melalui Chrome; gunakan mode desktop bila perlu.

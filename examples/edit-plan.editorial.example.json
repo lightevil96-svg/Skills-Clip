@@ -1,0 +1,448 @@
+{
+  "project": {
+    "title": "Synthetic conversation decision example",
+    "target_platforms": [
+      "youtube-shorts"
+    ],
+    "language": "id",
+    "notes": "Invented planning fixture. No audio/video was inspected. Not a transcript or finished edit.",
+    "content_kind": "synthetic"
+  },
+  "source": {
+    "path": "synthetic-not-footage.mp4",
+    "duration_s": 20,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "audio_present": true,
+    "ffmpeg_version": null
+  },
+  "routing": {
+    "primary_route": "vtuber-conversation-clip",
+    "supporting_routes": [
+      "editorial-intelligence",
+      "transcript-and-speaker-pipeline",
+      "caption-design",
+      "qa-and-self-review"
+    ],
+    "footage_type": "synthetic-conversation",
+    "speakers_visible": 2,
+    "speakers_verified": false,
+    "visual_evidence": [
+      "Invented storyboard only"
+    ],
+    "unknowns": [
+      "No source footage or audio exists for this example"
+    ]
+  },
+  "clip": {
+    "in_s": 4,
+    "out_s": 12,
+    "hook": "Scenario: a claim invites clarification",
+    "payoff": "Scenario: a shared reaction ends the exchange",
+    "context_preserved": false,
+    "candidate_score_0_12": null
+  },
+  "speakers": [
+    {
+      "speaker_id": "S1",
+      "display_name": null,
+      "avatar_ref": null,
+      "mapping_status": "CANDIDATE"
+    },
+    {
+      "speaker_id": "S2",
+      "display_name": null,
+      "avatar_ref": null,
+      "mapping_status": "CANDIDATE"
+    }
+  ],
+  "shots": [
+    {
+      "id": "shot-001",
+      "in_s": 4,
+      "out_s": 6,
+      "output_in_s": 0,
+      "output_out_s": 2,
+      "layout": "speaker-follow",
+      "crop": {
+        "x": 160,
+        "y": 0,
+        "w": 608,
+        "h": 1080
+      },
+      "primary_subject": "S1",
+      "reason": "Provisional storyboard choice; re-evaluate from real source.",
+      "caption_ids": [
+        "cap-1"
+      ],
+      "overlay_ids": [],
+      "editorial": {
+        "intent": "Preserve claim and its negation",
+        "beat_id": "b1",
+        "emotional_context": "CANDIDATE: scenario suggests surprise; do not assert until observed.",
+        "visual_focus": [
+          "active speaker expression",
+          "important dialogue",
+          "supporting context"
+        ],
+        "active_speaker_ids": [
+          "S1"
+        ],
+        "shared_interaction": false,
+        "camera": {
+          "action": "hold",
+          "reason": "Follow the meaningful turn or reaction rather than a timer.",
+          "keyframes": []
+        },
+        "effect_decision": {
+          "choice": "none",
+          "reason": "The source expression may communicate the beat without decoration; inspect first.",
+          "effects": []
+        },
+        "timing_rationale": "Keep the causal beat intact and compare the hold at native speed after source inspection.",
+        "intensity": 0,
+        "source_evidence_ids": [
+          "e1"
+        ],
+        "confidence": 0.2,
+        "alternative": {
+          "decision": "Wider stable shot without a reaction cut",
+          "reason_not_chosen": "Provisional: close expression may clarify the response; confirm in preview or choose this alternative."
+        }
+      }
+    },
+    {
+      "id": "shot-002",
+      "in_s": 6,
+      "out_s": 8,
+      "output_in_s": 2,
+      "output_out_s": 4,
+      "layout": "speaker-follow",
+      "crop": {
+        "x": 1152,
+        "y": 0,
+        "w": 608,
+        "h": 1080
+      },
+      "primary_subject": "S2",
+      "reason": "Provisional storyboard choice; re-evaluate from real source.",
+      "caption_ids": [
+        "cap-2"
+      ],
+      "overlay_ids": [],
+      "editorial": {
+        "intent": "Keep clarification before reaction",
+        "beat_id": "b2",
+        "emotional_context": "CANDIDATE: scenario suggests surprise; do not assert until observed.",
+        "visual_focus": [
+          "active speaker expression",
+          "important dialogue",
+          "supporting context"
+        ],
+        "active_speaker_ids": [
+          "S2"
+        ],
+        "shared_interaction": false,
+        "camera": {
+          "action": "cut",
+          "reason": "Follow the meaningful turn or reaction rather than a timer.",
+          "keyframes": []
+        },
+        "effect_decision": {
+          "choice": "none",
+          "reason": "The source expression may communicate the beat without decoration; inspect first.",
+          "effects": []
+        },
+        "timing_rationale": "Keep the causal beat intact and compare the hold at native speed after source inspection.",
+        "intensity": 0,
+        "source_evidence_ids": [
+          "e2"
+        ],
+        "confidence": 0.2,
+        "alternative": {
+          "decision": "Wider stable shot without a reaction cut",
+          "reason_not_chosen": "Provisional: close expression may clarify the response; confirm in preview or choose this alternative."
+        }
+      }
+    },
+    {
+      "id": "shot-003",
+      "in_s": 8,
+      "out_s": 10,
+      "output_in_s": 4,
+      "output_out_s": 6,
+      "layout": "speaker-follow",
+      "crop": {
+        "x": 160,
+        "y": 0,
+        "w": 608,
+        "h": 1080
+      },
+      "primary_subject": "S1",
+      "reason": "Provisional storyboard choice; re-evaluate from real source.",
+      "caption_ids": [],
+      "overlay_ids": [],
+      "editorial": {
+        "intent": "Allow realization to read",
+        "beat_id": "b3",
+        "emotional_context": "CANDIDATE: scenario suggests surprise; do not assert until observed.",
+        "visual_focus": [
+          "active speaker expression",
+          "important dialogue",
+          "supporting context"
+        ],
+        "active_speaker_ids": [],
+        "shared_interaction": false,
+        "camera": {
+          "action": "reaction-close-up",
+          "reason": "Follow the meaningful turn or reaction rather than a timer.",
+          "keyframes": []
+        },
+        "effect_decision": {
+          "choice": "none",
+          "reason": "The source expression may communicate the beat without decoration; inspect first.",
+          "effects": []
+        },
+        "timing_rationale": "Keep the causal beat intact and compare the hold at native speed after source inspection.",
+        "intensity": 1,
+        "source_evidence_ids": [
+          "e3"
+        ],
+        "confidence": 0.2,
+        "alternative": {
+          "decision": "Wider stable shot without a reaction cut",
+          "reason_not_chosen": "Provisional: close expression may clarify the response; confirm in preview or choose this alternative."
+        }
+      }
+    },
+    {
+      "id": "shot-004",
+      "in_s": 10,
+      "out_s": 12,
+      "output_in_s": 6,
+      "output_out_s": 8,
+      "layout": "shared-two-shot",
+      "crop": null,
+      "primary_subject": "S1+S2",
+      "reason": "Provisional storyboard choice; re-evaluate from real source.",
+      "caption_ids": [],
+      "overlay_ids": [],
+      "editorial": {
+        "intent": "End after the shared reaction",
+        "beat_id": "b4",
+        "emotional_context": "CANDIDATE: scenario suggests surprise; do not assert until observed.",
+        "visual_focus": [
+          "active speaker expression",
+          "important dialogue",
+          "supporting context"
+        ],
+        "active_speaker_ids": [],
+        "shared_interaction": true,
+        "camera": {
+          "action": "shared",
+          "reason": "Follow the meaningful turn or reaction rather than a timer.",
+          "keyframes": []
+        },
+        "effect_decision": {
+          "choice": "none",
+          "reason": "The source expression may communicate the beat without decoration; inspect first.",
+          "effects": []
+        },
+        "timing_rationale": "Keep the causal beat intact and compare the hold at native speed after source inspection.",
+        "intensity": 0,
+        "source_evidence_ids": [
+          "e4"
+        ],
+        "confidence": 0.2,
+        "alternative": {
+          "decision": "Wider stable shot without a reaction cut",
+          "reason_not_chosen": "Provisional: close expression may clarify the response; confirm in preview or choose this alternative."
+        }
+      }
+    }
+  ],
+  "captions": [
+    {
+      "id": "cap-1",
+      "start_s": 0.2,
+      "end_s": 1.7,
+      "text": "Aku tidak menyentuh tombol.",
+      "speaker_id": "S1",
+      "verification_status": "ASR_RAW",
+      "style": "neutral-provisional",
+      "kind": "dialogue",
+      "word_ids": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ],
+      "language": "id",
+      "emphasis_word_ids": [],
+      "animation": {
+        "entrance": "none",
+        "exit": "none",
+        "movement": "none",
+        "reason": "Keep the phrase stable until source timing is verified."
+      },
+      "position": {
+        "x": 540,
+        "y": 1380,
+        "safe_area_checked": false
+      },
+      "evidence_ids": []
+    },
+    {
+      "id": "cap-2",
+      "start_s": 2.2,
+      "end_s": 2.7,
+      "text": "Oh.",
+      "speaker_id": "S2",
+      "verification_status": "ASR_RAW",
+      "style": "neutral-provisional",
+      "kind": "dialogue",
+      "word_ids": [
+        "w5"
+      ],
+      "language": "id",
+      "emphasis_word_ids": [],
+      "animation": {
+        "entrance": "none",
+        "exit": "none",
+        "movement": "none",
+        "reason": "Keep the phrase stable until source timing is verified."
+      },
+      "position": {
+        "x": 540,
+        "y": 1380,
+        "safe_area_checked": false
+      },
+      "evidence_ids": []
+    }
+  ],
+  "audio": {
+    "voice_priority": true,
+    "bgm_used": false,
+    "sfx_used": false,
+    "ducking_db": null,
+    "target_lufs": -15,
+    "true_peak_db": -1,
+    "human_listen_required": true
+  },
+  "assets": [],
+  "qa": {
+    "status": "NOT_RUN",
+    "checks": []
+  },
+  "schema_version": "2.0",
+  "editorial": {
+    "intent": "Make a short exchange understandable through speaker changes and restrained reaction timing.",
+    "context_summary": "Invented claim, clarification, silent realization and shared laugh. These are hypothetical beats, not observed events.",
+    "audience_context": "Retain the negation in the opening claim and the clarification before the reaction.",
+    "capabilities": {
+      "audio_source_access": false,
+      "visual_source_access": false,
+      "tools": []
+    },
+    "evidence": [
+      {
+        "id": "e1",
+        "source_ref": "synthetic-not-footage.mp4",
+        "in_s": 4,
+        "out_s": 6,
+        "method": "visual-inspection",
+        "status": "CANDIDATE",
+        "observation": "Planned inspection of synthetic storyboard; no source observation has occurred.",
+        "artifact_ref": "examples/edit-plan.editorial.example.json#synthetic-scenario",
+        "confidence": 0.2
+      },
+      {
+        "id": "e2",
+        "source_ref": "synthetic-not-footage.mp4",
+        "in_s": 6,
+        "out_s": 8,
+        "method": "visual-inspection",
+        "status": "CANDIDATE",
+        "observation": "Planned inspection of synthetic storyboard; no source observation has occurred.",
+        "artifact_ref": "examples/edit-plan.editorial.example.json#synthetic-scenario",
+        "confidence": 0.2
+      },
+      {
+        "id": "e3",
+        "source_ref": "synthetic-not-footage.mp4",
+        "in_s": 8,
+        "out_s": 10,
+        "method": "visual-inspection",
+        "status": "CANDIDATE",
+        "observation": "Planned inspection of synthetic storyboard; no source observation has occurred.",
+        "artifact_ref": "examples/edit-plan.editorial.example.json#synthetic-scenario",
+        "confidence": 0.2
+      },
+      {
+        "id": "e4",
+        "source_ref": "synthetic-not-footage.mp4",
+        "in_s": 10,
+        "out_s": 12,
+        "method": "visual-inspection",
+        "status": "CANDIDATE",
+        "observation": "Planned inspection of synthetic storyboard; no source observation has occurred.",
+        "artifact_ref": "examples/edit-plan.editorial.example.json#synthetic-scenario",
+        "confidence": 0.2
+      }
+    ],
+    "narrative_beats": [
+      {
+        "id": "b1",
+        "kind": "setup",
+        "in_s": 4,
+        "out_s": 6,
+        "purpose": "Preserve claim and its negation",
+        "evidence_ids": [
+          "e1"
+        ]
+      },
+      {
+        "id": "b2",
+        "kind": "context",
+        "in_s": 6,
+        "out_s": 8,
+        "purpose": "Keep clarification before reaction",
+        "evidence_ids": [
+          "e2"
+        ]
+      },
+      {
+        "id": "b3",
+        "kind": "reaction",
+        "in_s": 8,
+        "out_s": 10,
+        "purpose": "Allow realization to read",
+        "evidence_ids": [
+          "e3"
+        ]
+      },
+      {
+        "id": "b4",
+        "kind": "ending",
+        "in_s": 10,
+        "out_s": 12,
+        "purpose": "End after the shared reaction",
+        "evidence_ids": [
+          "e4"
+        ]
+      }
+    ],
+    "unknowns": [
+      "All timing, speakers and emotions require real source inspection"
+    ],
+    "style_application": {
+      "profile_id": null,
+      "applied_traits": [],
+      "rejected_traits": [],
+      "project_instructions": [
+        "Use source-driven timing; no added SFX in this provisional plan"
+      ]
+    }
+  }
+}

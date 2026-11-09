@@ -15,6 +15,10 @@ The observations below come from the supplied file `383759.mp4`. The source clip
 
 These values describe this one reference file. They are not mandatory values for every future clip.
 
+For new references, use the [style profile protocol](../../editorial-intelligence/references/style-profiles.md).
+This historical document is evidence of earlier observations, not evidence that
+the absent source video has been inspected in the current session.
+
 ## Visual DNA
 
 ### Composition

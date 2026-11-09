@@ -26,6 +26,17 @@ Menghasilkan master vertikal yang menjaga subjek dan informasi penting. Resolusi
 - Stacked/side-by-side bila dua area sama penting dan penggunaannya masuk akal.
 - Full-bleed bila source memang portrait atau crop aman.
 
+Aturan specialist membatasi pilihan ini. Untuk beat conversation, gunakan
+speaker-follow solo atau satu shared two-shot yang relevan. Stacked, side-by-side,
+avatar-inset dan blur-fit bukan fallback otomatis untuk conversation. Simpan
+instruksi pengguna yang eksplisit bila komposisi tersebut diminta.
+
+Ambil keputusan dari [editorial-intelligence](../editorial-intelligence/SKILL.md)
+dan [panduan motion](../editorial-intelligence/references/camera-and-effects.md).
+FFmpeg tidak memilih speaker, memahami humor, atau menyediakan tracking AI
+otomatis. Implementasikan koordinat/keyframes yang sudah diperiksa. Easing
+adalah maksud interpolasi, bukan nama parameter yang pasti tersedia.
+
 Pada source 1920×1080, crop 9:16 dari tengah hanya sekitar 608×1080. Mengisi 1080×1920 berarti upscale sekitar 1,78×; detail yang hilang tidak dapat dipulihkan.
 
 ### 2. Scaling dan detail
@@ -43,6 +54,13 @@ YouTube memberi rekomendasi upload encoding H.264, frame rate sama dengan source
 
 ### 4. Render dan periksa
 Probe output, ambil keyframes, periksa frame awal/tengah/akhir, dan dengarkan audio. Bandingkan source dan output untuk memastikan detail tidak hilang.
+
+Untuk motion, periksa frame di antara keyframe. Untuk freeze/speed ramp, gunakan
+time_map source/output, remap caption dan tentukan perlakuan audio secara
+eksplisit. Periksa filter melalui `ffmpeg -h filter=NAME` pada build terpasang.
+Tidak semua build menyediakan libass, encoder atau filter yang sama. Jika
+treatment tidak dapat dijalankan/ditinjau, gunakan alternatif sederhana dan
+catat batasnya. Synthetic smoke test hanya membuktikan jalur teknis yang diuji.
 
 ## Potongan FFmpeg
 Blur-fit fallback:

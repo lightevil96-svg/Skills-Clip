@@ -49,6 +49,32 @@ Dengarkan minimal konteks sebelum dan sesudah kata yang tidak jelas. Jangan memo
 ### 5. Buat transcript final
 Hanya kata VERIFIED atau USER_CONFIRMED boleh masuk subtitle final. Untuk bagian UNKNOWN, pilih: minta klarifikasi, hilangkan caption, atau gunakan [unclear] bila pengguna meminta transcript verbatim.
 
+### 6. Verifikasi yang dapat diaudit
+Gunakan [editorial-intelligence](../editorial-intelligence/SKILL.md) untuk konteks
+sebelum memutuskan kata ambigu; konteks membantu pemeriksaan, bukan izin menebak.
+Kebijakan default `human-listen-required` tetap berlaku. Alternatif
+`source-audio-review` hanya tersedia bila agent benar-benar dapat mendengar audio
+sumber, memahami bahasa dan memeriksa konteks sebelum/sesudah ucapan.
+
+Untuk setiap kata VERIFIED/USER_CONFIRMED pada transcript v2, simpan receipt:
+`method`, reviewer, tool/model/version, waktu review, source_ref, interval sumber,
+bahasa, context_checked, uncertainties dan artifact bukti. `direct-audio-review`
+harus memakai audio sumber, bukan suara sintetis dari ASR. Catat replay dan
+koreksi di artifact review. `user-confirmation` merujuk konfirmasi pengguna yang
+nyata. Jangan mengklaim USER_CONFIRMED hanya karena pengguna mengunggah ASR.
+
+Jika hanya ada ASR, jangan ubah status ASR_RAW. Jika overlap, nama, negasi, slang,
+bahasa campuran atau speaker masih meragukan setelah replay, gunakan UNKNOWN
+atau ASR_RAW dan minta review manusia. Receipt dengan uncertainty belum selesai
+tidak boleh mendukung VERIFIED. Simpan teks ASR asli dalam notes/artifact ketika
+mengoreksi. Confidence tinggi bukan bukti verifikasi.
+
+Word timestamps memakai clock source asli, termasuk offset ekstraksi. Kata
+boleh overlap antar-speaker; jangan memaksakan urutan non-overlap. Hubungkan
+caption v2 melalui `word_ids`, lalu map ke clock output melalui shot/time_map.
+Terjemahan dan reading aid memerlukan review bahasa terpisah; jangan melabeli
+romaji sebagai terjemahan. Informasi editor bukan ucapan dan harus berlabel.
+
 ## Potongan FFmpeg
 Ekstrak audio untuk transkripsi:
 
@@ -73,4 +99,7 @@ ffmpeg -i INPUT.mp4 -vn -ac 1 -ar 16000 -c:a pcm_s16le transcript_audio.wav
 - Mengabaikan negasi atau kata pendek yang mengubah makna.
 
 ## Batas kemampuan AI
-ASR sering salah pada bahasa campuran, nama proper, slang, tawa, dan mic buruk. Validasi akhir memerlukan pendengaran manusia yang memahami bahasa/konteks.
+ASR sering salah pada bahasa campuran, nama proper, slang, tawa, dan mic buruk.
+Review audio langsung hanya berlaku jika kemampuan tersebut tersedia dan
+dipakai. Ambiguitas tetap memerlukan manusia yang memahami bahasa/konteks.
+Human listening untuk kenyamanan mix final terpisah dari verifikasi teks.

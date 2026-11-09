@@ -1,0 +1,90 @@
+{
+  "schema_version": "1.0",
+  "project_id": "Synthetic conversation decision example",
+  "reviewed_artifact": "NOT_RENDERED",
+  "reviewer": "UNASSIGNED",
+  "review_mode": "automated",
+  "status": "NOT_RUN",
+  "metrics": {
+    "storytelling_clarity": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "hook_effectiveness": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "timing_precision": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "humor_emotional_delivery": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "visual_composition": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "caption_readability": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "audio_comfort": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "editing_naturalness": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "effect_restraint": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    },
+    "overall_coherence": {
+      "status": "NOT_RUN",
+      "score": null,
+      "observation": "No real source or output was reviewed.",
+      "evidence_refs": [],
+      "next_action": "Review real source and rendered output using the anchored rubric."
+    }
+  },
+  "technical_checks": [],
+  "human_review": {
+    "status": "NOT_RUN",
+    "reviewer": null,
+    "evidence_refs": []
+  },
+  "revisions": [],
+  "limitations": [
+    "Example only; no editorial score or human review has been performed."
+  ]
+}

@@ -1,21 +1,223 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skills-clip.example/schemas/transcript.schema.json",
   "title": "Skills-Clip Word Transcript",
   "type": "object",
-  "required": ["source_file", "language", "verification_policy", "speakers", "words"],
+  "required": [
+    "source_file",
+    "language",
+    "verification_policy",
+    "speakers",
+    "words"
+  ],
   "properties": {
-    "source_file": {"type": "string"}, "language": {"type": ["string", "null"]},
-    "asr_model": {"type": ["string", "null"]}, "verification_policy": {"const": "human-listen-required"},
-    "speakers": {"type": "array", "items": {"type": "object", "required": ["speaker_id", "mapping_status"], "properties": {
-      "speaker_id": {"type": "string"}, "display_name": {"type": ["string", "null"]}, "avatar_ref": {"type": ["string", "null"]},
-      "mapping_status": {"enum": ["UNKNOWN", "CANDIDATE", "VERIFIED", "USER_CONFIRMED"]}
-    }}},
-    "words": {"type": "array", "items": {"type": "object", "required": ["start", "end", "text", "speaker_id", "verification_status"], "properties": {
-      "start": {"type": "number", "minimum": 0}, "end": {"type": "number", "exclusiveMinimum": 0},
-      "text": {"type": "string"}, "speaker_id": {"type": ["string", "null"]},
-      "asr_confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
-      "verification_status": {"enum": ["ASR_RAW", "VERIFIED", "USER_CONFIRMED", "UNKNOWN"]},
-      "verified_by": {"type": ["string", "null"]}, "notes": {"type": ["string", "null"]}
-    }}}
-  }
+    "source_file": {
+      "type": "string"
+    },
+    "language": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "asr_model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verification_policy": {
+      "enum": [
+        "human-listen-required",
+        "source-audio-review"
+      ]
+    },
+    "speakers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "speaker_id",
+          "mapping_status"
+        ],
+        "properties": {
+          "speaker_id": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "avatar_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "mapping_status": {
+            "enum": [
+              "UNKNOWN",
+              "CANDIDATE",
+              "VERIFIED",
+              "USER_CONFIRMED"
+            ]
+          },
+          "mapping_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          }
+        }
+      }
+    },
+    "words": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "start",
+          "end",
+          "text",
+          "speaker_id",
+          "verification_status"
+        ],
+        "properties": {
+          "start": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "text": {
+            "type": "string"
+          },
+          "speaker_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "asr_confidence": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "verification_status": {
+            "enum": [
+              "ASR_RAW",
+              "VERIFIED",
+              "USER_CONFIRMED",
+              "UNKNOWN"
+            ]
+          },
+          "verified_by": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verification": {
+            "$ref": "https://skills-clip.example/schemas/common.schema.json#/$defs/verification"
+          },
+          "language": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "schema_version": {
+      "enum": [
+        "1.0",
+        "2.0"
+      ]
+    },
+    "content_kind": {
+      "enum": [
+        "real",
+        "synthetic"
+      ]
+    },
+    "source_duration_s": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "audio_source_access": {
+      "type": "boolean"
+    },
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "schema_version": {
+            "const": "2.0"
+          }
+        },
+        "required": [
+          "schema_version"
+        ]
+      },
+      "then": {
+        "required": [
+          "content_kind",
+          "source_duration_s",
+          "audio_source_access"
+        ],
+        "properties": {
+          "words": {
+            "items": {
+              "required": [
+                "id",
+                "language"
+              ],
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "verification_status": {
+                        "enum": [
+                          "VERIFIED",
+                          "USER_CONFIRMED"
+                        ]
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "verification"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
 }

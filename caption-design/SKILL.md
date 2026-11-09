@@ -52,6 +52,31 @@ Jangan mencampur jenis teks tanpa label yang jelas.
 - Jangan memotong kata pada pergantian shot.
 - Untuk overlap, atur dua baris speaker secara terpisah tanpa mengubah urutan waktu.
 
+### 6. Emphasis, animasi dan bahasa
+Ambil intent dan beat dari [editorial-intelligence](../editorial-intelligence/SKILL.md).
+Gunakan word timestamps yang telah diperiksa untuk menonjolkan kata aktual saat
+terdengar. Biarkan frasa utama stabil; ubah warna, bobot atau skala satu bagian
+yang membantu makna. Jangan mengganti kata, negasi atau urutan untuk komedi.
+Jangan menampilkan kata punchline sebelum reveal.
+
+Entrance/exit singkat boleh memperjelas onset/emphasis. Hentikan animasi selama
+penonton membaca. Movement hanya saat mengikuti perubahan komposisi atau gag
+yang terbukti; caption tidak perlu bounce atau bergerak sepanjang waktu.
+Uji posisi awal, tengah gerak dan akhir terhadap mata, mulut, HUD dan UI platform.
+
+Bedakan `dialogue`, `translation`, `reading-aid`, `emphasis` dan `information`.
+Caption informasi editor harus jelas bukan kutipan dan didukung bukti. V2
+menyimpan word_ids, emphasis_word_ids, bahasa, animasi beserta alasan dan posisi.
+Dialogue/emphasis harus cocok dengan kata terverifikasi; terjemahan tidak bisa
+dibuktikan lewat kecocokan kata dan memerlukan receipt review bahasa sendiri.
+
+Untuk multilingual, pertahankan code-switching dan ejaan asli. Uji font fallback,
+glyph, shaping dan line breaks pada render. Prioritaskan satu lapisan bahasa;
+jangan menumpuk dialog, romaji dan terjemahan menjadi paragraf kecil. Dua speaker
+overlap dapat memakai dua baris terpisah. Untuk tiga atau lebih suara, prioritaskan
+ucapan yang dapat dipahami, labeli bagian tidak jelas dan sertakan transcript
+lengkap bila relevan. Jangan menciptakan urutan dialog baru.
+
 ## Potongan FFmpeg
 Burn-in ASS subtitle (path perlu di-escape sesuai OS):
 

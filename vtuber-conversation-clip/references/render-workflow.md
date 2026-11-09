@@ -25,7 +25,7 @@ Then:
 - Keep the original source video outside the deliverable package.
 - Use a script that accepts the source video path as an argument. For example: `./render.sh /path/to/source.mp4` or drag the source file onto `render.bat`.
 - Store only generated overlays, masks, fonts/assets that may be redistributed, audio assets if used, scripts, and instructions.
-- Keep the filter graph inline in the render script with `-filter_complex`. Avoid deprecated `-filter_complex_script` so the package remains compatible with FFmpeg 6–8.
+- Prefer an inline filter graph with `-filter_complex`. Check the actual build's filters and encoders; command form alone does not prove compatibility across FFmpeg versions.
 - For animated transparent overlays, render frames to FFmpeg and use FFV1 in a Matroska `.mkv` with alpha (BGRA) when appropriate. Do not use huge uncompressed animation formats without a reason.
 - Keep static full-frame assets such as a vignette as separate image inputs rather than baking them into every overlay frame when that improves compression.
 - Normalize segment properties before concatenation: frame rate, pixel format, sample aspect ratio, audio sample rate, and channel layout must match.
@@ -39,7 +39,7 @@ Unless the user requests another format:
 - Video: H.264, `yuv420p`, square pixels (`setsar=1`), fast-start enabled.
 - Audio: AAC, 48 kHz, stereo.
 - Keep the original voice synchronized and intelligible.
-- Add BGM only when requested or when it clearly helps. If added, duck it under speech. Add SFX only when tied to a visible cut or gag.
+- Add BGM only when requested or when it clearly helps. If added, duck it under speech. Add SFX only for an evidenced event or editorial purpose; a cut alone does not justify sound.
 - Keep captions and graphic overlays on a separate transparent layer when that makes revision easier.
 
 Do not assume the sample's 360×640 resolution is the desired output resolution. It is only the resolution of the supplied reference file.
@@ -91,7 +91,7 @@ When the user renders from a phone:
 
 ## 6. Compatibility and common failure points
 
-- Target FFmpeg 6–8. Do not rely on deprecated filter-script options.
+- Record the tested FFmpeg version and required filters/encoders. Treat other builds as NOT_RUN until tested; prefer inline filter graphs.
 - Use Bash for scripts that depend on process substitution or Bash-specific syntax; do not invoke those scripts with plain `sh`.
 - In Windows batch files, escape percent signs as `%%` and use `^` for line continuation.
 - Keep the Windows command line under the 8191-character limit. If a filter graph approaches that limit, simplify it rather than relying on deprecated script-file filters.

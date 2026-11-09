@@ -9,7 +9,9 @@ description: Use when editing VTuber livestream conversations into vertical shor
 
 Turn a real VTuber conversation into a compact, readable vertical clip. Preserve the original exchange and timing; make the humor legible through speaker changes, facial reactions, color-coded subtitles, and a few well-timed visual gags.
 
-The reference is a 23.6-second, 9:16 conversation clip. It is not a gameplay montage. Its identity comes from the interaction between speakers, not from a title sequence, countdown, gameplay HUD, or constant transitions.
+The historical reference is a 23.6-second, 9:16 conversation clip. Its colors,
+gags and pacing describe that sample only. Use the current source and brief to
+choose a new story while preserving this skill's speaker-follow camera rules.
 
 ## Non-negotiable rules
 
@@ -19,7 +21,7 @@ The reference is a 23.6-second, 9:16 conversation clip. It is not a gameplay mon
 4. **Keep faces readable.** Reframe around the active speaker's face and upper body. Never let captions, stickers, or meme inserts obscure the eyes or mouth during important dialogue.
 5. **Use visual gags selectively.** A meme, spinner, emote, or doodle must clarify the joke or reaction. Do not decorate every shot.
 6. **Protect the original voices.** Dialogue is the primary audio. Optional music and sound effects must sit underneath it and must not mask speech.
-7. **Do not force a generic hook or CTA.** The reference starts directly in the conversation and ends on a reaction/laugh. Keep that structure unless the user asks for a hook, title card, or follow CTA.
+7. **Do not force a generic hook or CTA.** The reference starts directly in the conversation and ends on a reaction/laugh. Choose the opening and ending from the current exchange; a sincere answer may need a quiet ending instead. Add title cards or CTAs only with a project reason.
 8. **Do not copy unrelated assets.** Recreate the visual function of an insert, not a specific logo, character sticker, or copyrighted image from the reference unless the user supplies or requests it.
 9. **Direct the camera to the speaker.** When only one VTuber is speaking, show that speaker alone in a close or medium-close shot. When two VTubers speak simultaneously or overlap in the same exchange, use one shared two-shot that shows both together. Return to a solo shot as soon as only one person is speaking again.
 10. **Never solve vertical reframing with a permanent multi-panel layout.** Do not stack a full-scene/board panel above an enlarged-character panel, use persistent split-screen, picture-in-picture, or duplicate the same scene into multiple panels. These are prohibited unless the user explicitly requests them.
@@ -47,9 +49,15 @@ See [references/style-reference.md](references/style-reference.md) for the sourc
 - Build a contact sheet at 1 fps. Increase to 2–4 fps around likely speaker changes, inserts, and punchlines.
 - Inspect full-resolution frames before choosing crops. A contact sheet is for navigation, not final crop decisions.
 - Check the audio waveform and levels. Use speech recognition only if available, then manually verify the transcript against the source.
+- Follow the auditable [transcript verification protocol](../transcript-and-speaker-pipeline/SKILL.md); ASR or waveform inspection alone never verifies words.
 - Identify any existing chat strip, stream labels, emotes, or separators. Preserve them only when they contribute context.
 
 ### 2. Find the story inside the real conversation
+
+Use [editorial-intelligence](../editorial-intelligence/SKILL.md) to establish what
+causes the reaction and what a first-time viewer must know. Record evidence,
+narrative beat, emotional context, visual focus, timing rationale, intensity and
+a simpler alternative per shot. Keep this in the shared v2 EDL.
 
 Create a short beat outline using only what is actually said and shown:
 
@@ -72,6 +80,10 @@ The reference's broad rhythm is an observation, a word/color misunderstanding, a
 - **Board or screen content:** show it as a short, deliberate insert only when the speaker refers to it or it is essential to understanding the lesson. It must not remain as a permanent top panel while character footage runs below.
 - **Landscape-to-vertical conversion:** choose a new crop for each shot according to the active speaker(s). If one speaker is talking, crop to that speaker; if both are talking, widen/pan to include both. Never solve 16:9-to-9:16 conversion by stacking a board view and a character view.
 - Keep the crop stable enough to read expressions. Add a small punch-in only for a clear emphasis, not as constant motion.
+- Compare reaction holds at native speed. Preserve hesitation when it creates
+  anticipation; cut repetitive tail only after the expression has resolved.
+  Natural jump cuts preserve phrasing and causal order. A contextual meme must
+  improve this particular exchange; omit it when the expression does the work.
 - Keep useful source UI in frame only when it establishes who is speaking or shows a relevant chat/emote. Do not preserve irrelevant empty strips just because they exist.
 
 ### 4. Build subtitles
@@ -99,7 +111,7 @@ Use a small number of context-specific visual inserts:
 
 - Keep dialogue at the front of the mix and preserve natural pauses and reactions.
 - Do not assume that every conversation clip needs background music. The reference is dialogue-led; use music only when requested or when it clearly improves pacing.
-- If adding music, duck it under speech. If adding SFX, align them with visible gags or cuts and keep them short.
+- If adding music, duck it under speech. Add SFX only for an evidenced event or editorial purpose, never merely because a cut occurs.
 - Avoid clipping, pumping that damages speech, or excessive loudness normalization.
 - Keep the source audio synchronized with the video; inspect stream start times before trimming or concatenating.
 
@@ -113,7 +125,7 @@ When the user wants a render package rather than a finished render:
 - include only the script, overlays, fonts/assets that may legally be redistributed, and a concise `BACA_DULU.txt`;
 - accept the source video path as a script argument;
 - **never put the user's original video inside the ZIP**;
-- keep the workflow compatible with FFmpeg 6–8 and avoid deprecated `-filter_complex_script`;
+- target the available FFmpeg build and record its version; verify needed filters locally instead of assuming all FFmpeg 6–8 builds are equivalent; prefer inline `-filter_complex`;
 - make instructions usable from a phone and Google Colab when relevant.
 
 The detailed workflow is in [references/render-workflow.md](references/render-workflow.md).

@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "id": "historical-conversation-study",
+  "scope": "Historical sample observations for a conversation project; opt-in only",
+  "references": [
+    {
+      "id": "historical-document",
+      "source_ref": "vtuber-conversation-clip/references/style-reference.md",
+      "available": false
+    }
+  ],
+  "traits": {
+    "subtitle-style": {
+      "observation": "Short speaker-coded phrases",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "font": {
+      "observation": "Rounded bold appearance; exact font unknown",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "palette": {
+      "observation": "Approximate speaker colors only",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "caption-placement": {
+      "observation": "Lower-middle, adjusted around expressions",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "camera": {
+      "observation": "Speaker-follow solo with relevant shared shots",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "zoom": {
+      "observation": "Restrained emphasis",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "transitions": {
+      "observation": "Mostly direct cuts",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "sfx": {
+      "observation": "Audio characteristics not re-inspected",
+      "status": "UNKNOWN",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "memes": {
+      "observation": "Context-specific associations",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "motion-graphics": {
+      "observation": "Sparse reaction graphics",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "pacing": {
+      "observation": "Variable conversational beats",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    },
+    "identity": {
+      "observation": "Dialogue and expression lead",
+      "status": "CANDIDATE",
+      "reference_id": "historical-document",
+      "in_s": 0,
+      "out_s": 23.616,
+      "method": "document-only",
+      "confidence": 0.3,
+      "adaptation": "Inspect the supplied reference and current source before applying this trait.",
+      "exceptions": [
+        "Do not copy palette, assets or cadence blindly"
+      ]
+    }
+  },
+  "asset_policy": "Use original, licensed or user-cleared assets. No extraction of reference assets for redistribution."
+}

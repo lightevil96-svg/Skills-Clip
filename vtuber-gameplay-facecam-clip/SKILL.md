@@ -51,6 +51,19 @@ Angka awal untuk eksperimen: avatar inset sekitar 18–30% lebar canvas; avatar 
 - Jangan mempercepat semua shot dengan durasi yang sama.
 - Gunakan slow motion hanya bila gerakan sumber cukup jelas dan tujuannya dapat dijelaskan.
 
+### 4a. Keputusan aksi dan reaksi
+Gunakan [editorial-intelligence](../editorial-intelligence/SKILL.md) untuk mencatat
+intent, evidence dan alternatif setiap shot. Clutch memerlukan ancaman, keputusan,
+aksi dan hasil yang terbaca. Fail memerlukan penyebab sebelum reaksi. Horror
+memerlukan konteks ruang, ambience dan suspense sebelum scare bila itu inti beat.
+
+Prioritaskan target/reticle/HUD saat aksi; pindahkan fokus ke avatar ketika
+reaksi menjadi informasi utama. Sinkronkan perubahan dengan kejadian sumber,
+bukan puncak waveform semata. Keyframe pan/zoom mengikuti landmark yang diperiksa
+pada beberapa frame; jika tracking belum tersedia, pilih crop lebih lebar.
+Jangan memperbesar avatar pada frame yang justru membuktikan kemenangan/gagal.
+Gunakan time_map eksplisit untuk freeze atau speed ramp dan periksa sync ulang.
+
 ### 5. Caption
 Caption membantu reaksi atau informasi penting, bukan menyalin seluruh percakapan tanpa seleksi. Ikuti transcript verification dan caption design skill.
 
