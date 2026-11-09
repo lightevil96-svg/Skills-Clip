@@ -103,3 +103,7 @@ ffmpeg -hide_banner -i OUTPUT.mp4 -vf "blackdetect=d=0.20:pix_th=0.10" -an -f nu
 
 ## Batas kemampuan AI
 QA otomatis hanya mengukur hal yang dapat dihitung. Komposisi, humor, naturalness, keterbacaan, dan kenyamanan audio memerlukan review manusia.
+
+## Production integration
+
+Use [verify_evidence.py](../scripts/verify_evidence.py) to check actual source metadata/hash and inspection-file hashes. Follow the [production guide](../docs/production-tools.md). File integrity PASS is distinct from audiovisual evidence verification, editorial quality and human listening.

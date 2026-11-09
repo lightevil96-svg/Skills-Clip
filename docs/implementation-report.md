@@ -1,5 +1,10 @@
 # Editorial intelligence upgrade
 
+Historical snapshot: initial editorial upgrade, 9 November 2026. Later executable
+tooling and GitHub research are recorded in [the follow-up report](github-integration-research.md),
+[production guide](production-tools.md) and [production test results](../evals/production-results.json).
+The limitations and counts below describe the initial implementation commit.
+
 ## Baseline and audit scope
 
 Audit base: `82ced39b89452e36ca4e06ee520af1c50300d561` on `main`.

@@ -88,8 +88,11 @@ external and accept its path as an argument. Record asset rights separately.
   tool/model, source interval, uncertainty and artifact. Human review resolves
   uncertain language, cultural interpretation and final listening comfort.
 - No numerical score or successful encode alone establishes professional quality.
-- Style and editorial documents describe procedures; no ASR, tracker, renderer,
-  rights database or universal AI-perception capability is bundled here.
+- Style and editorial documents describe procedures. The [production tools](docs/production-tools.md)
+  provide bounded inspection, ASR import, an optional local ASR runner and an EDL
+  preview renderer. No model weights, tracker, rights database or universal
+  AI-perception capability is bundled. Unsupported renderer decisions must fail,
+  never be discarded silently. A successful preview remains REVIEW until QA.
 
 ## Status vocabulary
 - **PASS** — check was executed and passed.

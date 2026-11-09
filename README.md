@@ -41,6 +41,9 @@ Inspection, discovery and transcription may iterate. Transcript-only tasks skip
 camera/render work. Package-only tasks validate the supplied edit rather than
 inventing a new story. The editorial module owns why/when; specialists own how.
 See [audit and implementation report](docs/implementation-report.md).
+For the executable production path, read [production tools](docs/production-tools.md).
+The [GitHub integration research](docs/github-integration-research.md) maps eight
+upstream projects to remaining gaps, with exact inspected commits and honest runtime status.
 
 ## Core principles
 
@@ -87,19 +90,25 @@ artifacts for final readiness checks. Draft schema PASS is not approval to rende
 unverified captions. Existing unversioned examples remain valid as drafts.
 
 The smoke script executes a small synthetic FFmpeg pan, ASS burn-in, Bash package
-with spaced paths, decode and stream checks. It is not a generic EDL renderer.
+with spaced paths, decode and stream checks. Separately, `render_edl.py` implements
+a bounded v2 preview renderer: direct cuts, explicit crops, fixed-size keyframed
+pans, source audio and verified static dialogue. It rejects unsupported decisions.
+`inspect_source.py`, `asr_bridge.py` and `verify_evidence.py` add real media bundles,
+word imports and file-integrity checks. See the production guide for commands.
 Python/jsonschema/PyYAML are developer validation dependencies, separate from
 FFmpeg/FFprobe for basic rendering. Only actually tested builds/platforms may
 be reported PASS. Missing tools fail explicitly instead of silently skipping.
 
 ## Capability and quality limits
-No ASR model, audiovisual perception model, tracker or automatic editor is
-bundled. Agents must declare the tools they have actually used. Direct source
+No ASR weights, audiovisual perception model or tracker is bundled. An optional
+local faster-whisper runner is available; its model inference remains NOT_RUN in
+this upgrade. Agents must declare the tools they have actually used. Direct source
 audio review can verify words only with the explicit policy and auditable
 receipts; ASR alone remains raw. Ambiguous words/speakers require human review.
 Final audio comfort still requires human listening.
 
-Validators check declarations, not their truth. They cannot authenticate a
+Schema validators check declarations; the evidence tool additionally checks
+actual source metadata and file hashes. Neither can authenticate a
 receipt, license, expression, lip sync or joke. Keep technical QA, editorial QA,
 human review and automated checks separate. Scores never promise professional
 quality or viral reach. Footage-dependent evals are NOT_RUN without footage.

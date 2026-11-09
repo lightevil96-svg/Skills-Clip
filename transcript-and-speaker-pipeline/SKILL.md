@@ -103,3 +103,7 @@ ASR sering salah pada bahasa campuran, nama proper, slang, tawa, dan mic buruk.
 Review audio langsung hanya berlaku jika kemampuan tersebut tersedia dan
 dipakai. Ambiguitas tetap memerlukan manusia yang memahami bahasa/konteks.
 Human listening untuk kenyamanan mix final terpisah dari verifikasi teks.
+
+## Production integration
+
+Use [asr_bridge.py](../scripts/asr_bridge.py) through the [production guide](../docs/production-tools.md) to import WhisperX/faster-whisper word JSON or optionally run an existing local model. Preserve unresolved alignment/text gaps; no imported text or speaker identity becomes verified automatically.

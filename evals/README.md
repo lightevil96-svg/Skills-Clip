@@ -31,6 +31,15 @@ caption linkage, receipt policy dan batas klaim QA. Receipt di unit test adalah
 test double, bukan hasil pendengaran. Smoke test menjalankan FFmpeg pada pola
 gambar dan tone buatan; tidak menilai humor, ekspresi atau kenyamanan manusia.
 
+Production tests juga menjalankan importer dan renderer EDL terbatas. Tes
+membandingkan piksel crop, posisi audio dua nada, pan/easing, caption, sumber
+tanpa audio, native fractional FPS, penolakan VFR dan perubahan hash bukti.
+Windows dan Ubuntu memakai jalur Python yang sama. Smoke ZIP/Bash tetap diuji
+khusus Linux; Windows batch dan Colab tidak otomatis teruji oleh job Windows.
+Lihat [hasil production](production-results.json), [panduan](../docs/production-tools.md)
+dan [riset GitHub](../docs/github-integration-research.md). Hasil awal tetap
+tersimpan dalam [snapshot audit pertama](implementation-results.json).
+
 ## Protokol regression
 Tetap jalankan Gate 1–8 pada footage yang sesuai. Tambahkan E01–E12 untuk
 kemampuan editorial. Untuk setiap run simpan case ID, source hash, route, plan,

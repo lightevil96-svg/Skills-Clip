@@ -1,0 +1,111 @@
+{
+  "format": "skills-clip-github-research-v1",
+  "reviewed_on": "2026-11-10",
+  "scope": "Official upstream metadata/code inspection. Commit inspection is not a runtime test or dependency pin.",
+  "components": [
+    {
+      "repo": "SYSTRAN/faster-whisper",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-11-06T17:24:51Z",
+      "license": "MIT",
+      "url": "https://github.com/SYSTRAN/faster-whisper",
+      "inspected_commit": "846467d436117e44d54ad74f555d85c75834edb0",
+      "commit_url": "https://github.com/SYSTRAN/faster-whisper/commit/846467d436117e44d54ad74f555d85c75834edb0",
+      "inspected_on": "2026-11-10",
+      "runtime_status": "NOT_RUN",
+      "integration": "optional local-model runner and JSON importer"
+    },
+    {
+      "repo": "m-bain/whisperX",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-22T14:53:44Z",
+      "license": "BSD-2-Clause",
+      "url": "https://github.com/m-bain/whisperX",
+      "inspected_commit": "5d3678b8535698a2826a5db9eb3e4105aef85dd9",
+      "commit_url": "https://github.com/m-bain/whisperX/commit/5d3678b8535698a2826a5db9eb3e4105aef85dd9",
+      "inspected_on": "2026-11-10",
+      "runtime_status": "NOT_RUN",
+      "integration": "JSON word importer only"
+    },
+    {
+      "repo": "pyannote/pyannote-audio",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-11-09T05:43:30Z",
+      "license": "MIT",
+      "url": "https://github.com/pyannote/pyannote-audio",
+      "inspected_commit": "0d6f291328af48c7d93bcbb79bc92576af384ed7",
+      "commit_url": "https://github.com/pyannote/pyannote-audio/commit/0d6f291328af48c7d93bcbb79bc92576af384ed7",
+      "inspected_on": "2026-11-10",
+      "runtime_status": "NOT_RUN",
+      "integration": "researched option; no runtime adapter installed"
+    },
+    {
+      "repo": "QwenLM/Qwen3-Omni",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-04-23T10:58:01Z",
+      "license": "Apache-2.0",
+      "url": "https://github.com/QwenLM/Qwen3-Omni",
+      "inspected_commit": "e4235853125589c789f06a2dd83e9f4126df5e9d",
+      "commit_url": "https://github.com/QwenLM/Qwen3-Omni/commit/e4235853125589c789f06a2dd83e9f4126df5e9d",
+      "inspected_on": "2026-11-10",
+      "runtime_status": "NOT_RUN",
+      "integration": "researched option; no runtime adapter installed"
+    },
+    {
+      "repo": "facebookresearch/sam2",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-05-30T02:29:40Z",
+      "license": "Apache-2.0",
+      "url": "https://github.com/facebookresearch/sam2",
+      "inspected_commit": "2b90b9f5ceec907a1c18123530e92e794ad901a4",
+      "commit_url": "https://github.com/facebookresearch/sam2/commit/2b90b9f5ceec907a1c18123530e92e794ad901a4",
+      "inspected_on": "2026-11-10",
+      "runtime_status": "NOT_RUN",
+      "integration": "researched option; no runtime adapter installed"
+    },
+    {
+      "repo": "Breakthrough/PySceneDetect",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-11-08T23:20:22Z",
+      "license": "BSD-3-Clause",
+      "url": "https://github.com/Breakthrough/PySceneDetect",
+      "inspected_commit": "4d83b3fbba2181298369900384e2f6727b4e7e27",
+      "commit_url": "https://github.com/Breakthrough/PySceneDetect/commit/4d83b3fbba2181298369900384e2f6727b4e7e27",
+      "inspected_on": "2026-11-10",
+      "runtime_status": "NOT_RUN",
+      "integration": "researched option; no runtime adapter installed"
+    },
+    {
+      "repo": "AcademySoftwareFoundation/OpenTimelineIO",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-11-07T01:42:50Z",
+      "license": "Apache-2.0",
+      "url": "https://github.com/AcademySoftwareFoundation/OpenTimelineIO",
+      "inspected_commit": "f5377aa313a419b332e1623aa64c8d09f30aab07",
+      "commit_url": "https://github.com/AcademySoftwareFoundation/OpenTimelineIO/commit/f5377aa313a419b332e1623aa64c8d09f30aab07",
+      "inspected_on": "2026-11-10",
+      "runtime_status": "NOT_RUN",
+      "integration": "researched option; no runtime adapter installed"
+    },
+    {
+      "repo": "FFmpeg/FFmpeg",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-11-09T11:48:49Z",
+      "license": "NOASSERTION",
+      "url": "https://github.com/FFmpeg/FFmpeg",
+      "inspected_commit": "b2b543c079241a63692245c26c743328385dfff6",
+      "commit_url": "https://github.com/FFmpeg/FFmpeg/commit/b2b543c079241a63692245c26c743328385dfff6",
+      "inspected_on": "2026-11-10",
+      "runtime_status": "EXECUTED_LOCAL_BUILD",
+      "integration": "inspection, bounded EDL preview and synthetic tests"
+    }
+  ]
+}

@@ -168,6 +168,64 @@
     "source_sha256": {
       "type": "string",
       "pattern": "^[0-9a-f]{64}$"
+    },
+    "unresolved_words": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "text",
+          "raw_location",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "raw_location": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "import_provenance": {
+      "type": "object",
+      "required": [
+        "raw_sha256",
+        "source_offset_s",
+        "source_association",
+        "engine_run"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "raw_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_offset_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "source_association": {
+          "enum": [
+            "DECLARED",
+            "LOCAL_RUN"
+          ]
+        },
+        "engine_run": {
+          "enum": [
+            "NOT_RUN",
+            "PASS"
+          ]
+        }
+      }
     }
   },
   "allOf": [

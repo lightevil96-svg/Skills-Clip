@@ -103,3 +103,7 @@ ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,widt
 
 ## Batas kemampuan AI
 AI dapat mengorganisasi bukti, menyusun EDL, dan menjalankan pemeriksaan teknis. Humor, ekspresi, kualitas suara, serta keputusan akhir atas ambiguitas memerlukan review manusia.
+
+## Production integration
+
+For executable capability selection, use the [production tool matrix](../docs/production-tools.md) and [GitHub integration research](../docs/github-integration-research.md). Route to the bounded renderer only when every requested treatment is supported. Optional model names do not establish installed capabilities.

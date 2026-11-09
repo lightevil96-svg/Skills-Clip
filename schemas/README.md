@@ -70,3 +70,7 @@ Legacy examples remain unchanged and valid as drafts. Draft PASS means schema
 and semantic consistency only. New examples are synthetic with NOT_RUN QA and
 raw/unverified words. They must fail final readiness checks. Test-created
 verification receipts are synthetic test data, never evidence of real review.
+
+## Optional ASR import ledger
+
+`transcript.unresolved_words` retains raw words or segments with missing alignment or a segment/word-list mismatch. Each entry has text, raw_location and reason. A final transcript must resolve these entries. `import_provenance` records the raw SHA-256, source offset, source association (`DECLARED` for imports or `LOCAL_RUN`) and engine execution status. These are additive fields; legacy artifacts remain valid. An executed engine still produces ASR_RAW, not verified dialogue. See the [production tools](../docs/production-tools.md).

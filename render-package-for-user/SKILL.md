@@ -98,3 +98,7 @@ Contoh belum diuji pada runtime pengguna.
 
 ## Batas kemampuan AI
 AI dapat membuat paket dan script, tetapi kompatibilitas akhir harus diuji di perangkat/runtime pengguna.
+
+## Production integration
+
+The [production tools](../docs/production-tools.md) generate private working directories, not ready-to-ship ZIPs. Exclude inspection PNG/audio bundles, raw source media, models and unlicensed fonts from delivery. Include only the reviewed output and explicitly permitted reproducibility assets.

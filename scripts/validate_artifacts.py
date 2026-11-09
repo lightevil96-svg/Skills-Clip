@@ -148,6 +148,7 @@ def validate(kind, data, *, stage='draft', transcript=None, review=None, style=N
             require(v2, 'final transcript requires v2 provenance; legacy remains valid as draft')
             require(data.get('content_kind') == 'real', 'synthetic transcript is not a final source transcript')
             require(bool(data.get('source_sha256')), 'final transcript requires source_sha256')
+            require(not data.get('unresolved_words'), 'final transcript has unresolved alignment/text gaps')
 
     elif kind == 'style-profile':
         references = unique(data['references'], 'id', 'references')

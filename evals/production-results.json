@@ -1,0 +1,68 @@
+{
+  "run_date": "2026-11-09T17:47:42.638265+00:00",
+  "base_commit": "6bc456cbcad4554f43c77f87ec4c65e568348299",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "checks": [
+    {
+      "name": "repository_validator",
+      "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python scripts/validate_skill_repo.py",
+      "status": "PASS"
+    },
+    {
+      "name": "regression_and_media_tests",
+      "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m unittest discover -s tests -v",
+      "status": "PASS",
+      "test_count": 90,
+      "skipped": false,
+      "media_test_count": 11
+    },
+    {
+      "name": "compileall",
+      "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m compileall -q scripts tests",
+      "status": "PASS"
+    },
+    {
+      "name": "diff_check",
+      "command": "git diff --check",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_package_smoke",
+      "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python scripts/smoke_ffmpeg.py --output-dir test-results/production/legacy-smoke",
+      "status": "PASS",
+      "check_count": 10
+    }
+  ],
+  "ci": {
+    "status": "NOT_RUN",
+    "reason": "Development changes not yet pushed for this follow-up"
+  },
+  "not_run": [
+    "real-footage Gates 1\u20138",
+    "real-footage editorial E01\u2013E12",
+    "human listening",
+    "faster-whisper model inference",
+    "WhisperX alignment inference",
+    "pyannote diarization",
+    "Qwen3-Omni perception",
+    "SAM 2 tracking",
+    "PySceneDetect runtime",
+    "OpenTimelineIO export",
+    "Windows batch package",
+    "Google Colab",
+    "production-resolution/performance benchmark"
+  ],
+  "limitations": [
+    "Synthetic tests are technical evidence only. Imported/generated ASR remains raw.",
+    "Evidence hashes do not authenticate semantic observations or human receipts.",
+    "Preview renderer rejects unsupported EDL treatments and does not implement loudness targets."
+  ],
+  "resolved_failures": [
+    "FFprobe bounded decoding initially omitted a delayed B-frame; decode margin added before timestamp filtering.",
+    "concat output initially lacked the last frame duration; declare proven native CFR to preserve frame count and average FPS."
+  ]
+}

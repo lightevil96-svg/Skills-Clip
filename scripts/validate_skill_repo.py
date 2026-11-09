@@ -118,14 +118,37 @@ def check_examples():
     return errors
 
 
+def check_integrations():
+    errors = []
+    required = ['scripts/media_tools.py', 'scripts/inspect_source.py', 'scripts/asr_bridge.py',
+                'scripts/verify_evidence.py', 'scripts/render_edl.py', 'docs/production-tools.md',
+                'docs/github-integration-research.md', 'requirements-asr.txt']
+    errors.extend(f'MISSING {name}' for name in required if not (ROOT/name).is_file())
+    try:
+        data = load_json(ROOT/'integrations/github-components.json')
+        rows = data['components']
+        if data['format'] != 'skills-clip-github-research-v1' or len({r['repo'] for r in rows}) != len(rows):
+            errors.append('Invalid/duplicate GitHub research inventory')
+        for row in rows:
+            if not re.fullmatch(r'[0-9a-f]{40}', row['inspected_commit']):
+                errors.append(f'{row["repo"]}: missing inspected commit')
+            if row['url'] != f'https://github.com/{row["repo"]}':
+                errors.append(f'{row["repo"]}: mismatched repository URL')
+            if row['runtime_status'] not in ('NOT_RUN', 'EXECUTED_LOCAL_BUILD'):
+                errors.append(f'{row["repo"]}: unsupported runtime claim')
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        errors.append(f'GitHub research inventory: {exc}')
+    return errors
+
+
 def main():
-    errors = check_structure() + check_examples()
+    errors = check_structure() + check_examples() + check_integrations()
     if errors:
         print('FAIL')
         for error in errors:
             print('- '+error)
         return 1
-    print(f'PASS: {len(SKILLS)} skills, local links, 5 schemas and 6 examples checked.')
+    print(f'PASS: {len(SKILLS)} skills, local links, 5 schemas, 6 examples and integration inventory checked.')
     print('Checks validate structure and declared consistency, not source truth or editorial quality.')
     return 0
 

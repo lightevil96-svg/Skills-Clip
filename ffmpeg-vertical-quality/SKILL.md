@@ -88,3 +88,7 @@ Contoh belum diuji; blur-fit hanya fallback bila crop merusak konteks.
 
 ## Batas kemampuan AI
 Metrik numerik tidak dapat memutuskan komposisi terbaik atau detail yang penting bagi penonton. Inspeksi visual tetap diperlukan.
+
+## Production integration
+
+The [bounded EDL preview renderer](../scripts/render_edl.py) executes supported cuts, crops and fixed-size pans. Read its [support matrix](../docs/production-tools.md) before routing. It rejects unimplemented zoom, effects, retiming and mix changes instead of silently ignoring them.

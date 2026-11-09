@@ -109,3 +109,7 @@ emotion, lip sync, attribution or comfort. Audiovisual agents must log actual
 inspection and unresolved ambiguity. Humans resolve culture-dependent humor,
 uncertain language and final listening comfort. No viral or universal
 professional-quality guarantee follows from this workflow.
+
+## Production integration
+
+Use [source inspection bundles](../docs/production-tools.md) to gather inspectable media. Optional [GitHub perception/tracking components](../docs/github-integration-research.md) may propose CANDIDATE evidence; they do not own narrative choices or verify their own interpretations.
