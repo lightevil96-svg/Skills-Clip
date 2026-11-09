@@ -67,6 +67,24 @@
       "case_count": 2,
       "evidence": "evals/forward-tests.md",
       "scope": "Observed policy behavior in two fresh agent responses only"
+    },
+    {
+      "name": "GitHub Actions validation",
+      "status": "PASS",
+      "commit": "d08b9fb264d8e5195434104d6fc9a0cfa0505528",
+      "runs": [
+        {
+          "event": "pull_request",
+          "url": "https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42627889295",
+          "conclusion": "success"
+        },
+        {
+          "event": "push",
+          "url": "https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42627801870",
+          "conclusion": "success"
+        }
+      ],
+      "scope": "Remote logs confirm repository validation, 55 unit/regression tests and 10 synthetic FFmpeg checks."
     }
   ],
   "footage_evaluations": [
@@ -174,12 +192,16 @@
   "other_not_run": [
     "Windows batch execution",
     "Google Colab runtime",
-    "Other FFmpeg builds",
     "Human audio comfort review",
     "Generic EDL-to-render compilation",
     "Automatic tracking",
-    "GitHub Actions remote run before publication"
+    "FFmpeg builds other than tested 7.1.5 local and 6.1.1 CI"
   ],
   "resolved_test_failure": "Initial run exposed unavailable optional date-time format checking. Added explicit timestamp validation; regression subsequently passed.",
-  "interpretation": "PASS applies only to executed checks. No entertainment, professional quality, universal model capability or viral outcome is certified."
+  "interpretation": "PASS applies only to executed checks. No entertainment, professional quality, universal model capability or viral outcome is certified.",
+  "ci_environment": {
+    "python": "3.11.18",
+    "ffmpeg": "6.1.1-3ubuntu5",
+    "platform": "GitHub Actions Ubuntu"
+  }
 }

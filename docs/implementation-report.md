@@ -65,6 +65,7 @@ Local run: 2026-11-09. See [machine-readable results](../evals/implementation-re
 | `python scripts/smoke_ffmpeg.py --output-dir test-results/smoke` | PASS | Ten synthetic technical checks on FFmpeg 7.1.5, Linux |
 | Synthetic preview inspection | PASS, narrow scope | One 180×320 output frame inspected; ASS label readable |
 | [Fresh-agent forward tests](../evals/forward-tests.md) | PASS, text-only scope | Two planning responses respected evidence/capability limits |
+| GitHub Actions, push and PR runs | PASS | Remote logs confirm validator, 55 tests and ten smoke checks on Python 3.11.18 / FFmpeg 6.1.1 |
 | Gates 1–8 on actual fixtures | NOT_RUN | No real footage/delivery fixture supplied |
 | E01–E12 audiovisual editorial assessment | NOT_RUN | No source/render/reference review available |
 | Human listening, Windows and Colab execution | NOT_RUN | Those environments/reviewers were not exercised |
@@ -139,6 +140,11 @@ a nonlinear retrospective montage needs an explicit future contract. The
 smoke render tests 180×320 synthetic content, not full-resolution VTuber quality.
 
 Development branch: `feat/editorial-intelligence-v2`. The base remains
-`82ced39b89452e36ca4e06ee520af1c50300d561`. Changes are prepared for a development
-branch and pull request, without replacing or merging `main`. Remote CI status
-must be checked after publication; local PASS is not a remote CI result.
+`82ced39b89452e36ca4e06ee520af1c50300d561`. Implementation commit:
+`d08b9fb264d8e5195434104d6fc9a0cfa0505528`. Changes are published in
+[draft PR #1](https://github.com/lightevil96-svg/Skills-Clip/pull/1), without
+replacing or merging `main`. The remote tree matched the locally validated
+tree exactly. [PR CI](https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42627889295)
+and [push CI](https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42627801870)
+both completed successfully for the implementation commit. This report update
+records those completed runs; it does not infer results for future commits.
