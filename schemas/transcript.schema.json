@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Skills-Clip Word Transcript",
+  "type": "object",
+  "required": ["source_file", "language", "verification_policy", "speakers", "words"],
+  "properties": {
+    "source_file": {"type": "string"}, "language": {"type": ["string", "null"]},
+    "asr_model": {"type": ["string", "null"]}, "verification_policy": {"const": "human-listen-required"},
+    "speakers": {"type": "array", "items": {"type": "object", "required": ["speaker_id", "mapping_status"], "properties": {
+      "speaker_id": {"type": "string"}, "display_name": {"type": ["string", "null"]}, "avatar_ref": {"type": ["string", "null"]},
+      "mapping_status": {"enum": ["UNKNOWN", "CANDIDATE", "VERIFIED", "USER_CONFIRMED"]}
+    }}},
+    "words": {"type": "array", "items": {"type": "object", "required": ["start", "end", "text", "speaker_id", "verification_status"], "properties": {
+      "start": {"type": "number", "minimum": 0}, "end": {"type": "number", "exclusiveMinimum": 0},
+      "text": {"type": "string"}, "speaker_id": {"type": ["string", "null"]},
+      "asr_confidence": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+      "verification_status": {"enum": ["ASR_RAW", "VERIFIED", "USER_CONFIRMED", "UNKNOWN"]},
+      "verified_by": {"type": ["string", "null"]}, "notes": {"type": ["string", "null"]}
+    }}}
+  }
+}
