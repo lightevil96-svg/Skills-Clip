@@ -1,4 +1,4 @@
-# Agent Operating Contract — Skills-Clip
+# Agent Operating Contract: Skills-Clip
 
 This document is the mandatory operating contract for any AI agent, editor, or automation using this repository. Read it before editing a new source.
 
@@ -8,16 +8,23 @@ Produce accurate, context-preserving, platform-ready VTuber clips. The goal is n
 ## Authority order
 1. User's explicit brief and constraints.
 2. Original source video/audio and user-supplied verified transcript.
-3. Existing repository reference skills and style references.
+3. Universal repository rules and the selected specialist's constraints.
 4. Official platform/codec/tool documentation.
 5. Editorial heuristics in skills, which are starting points and must be tested.
 
+Apply user style profiles only within their scope, below the current project
+brief and universal integrity rules. Historical sample observations are not
+universal instructions. A brief may change aesthetics, never source facts.
 Never let a lower-level heuristic override explicit user direction or source evidence.
 
 ## Universal rules
 - Never invent dialogue, speaker identity, event, context, emotion, game result, or asset provenance.
 - Mark unknown information as UNKNOWN. Do not fill gaps with plausible guesses.
-- ASR output is ASR_RAW until a human listens and verifies it.
+- ASR output is ASR_RAW until source-audio verification is recorded. The default
+  transcript policy is human-listen-required. A capable agent may use the explicit
+  source-audio-review policy only after actually listening, recording a receipt
+  and escalating ambiguity. ASR confidence, waveform inspection and alignment
+  alone never verify text. See [verification protocol](transcript-and-speaker-pipeline/SKILL.md).
 - Diarization IDs (S1/S2) are not real identities and must not be mapped to avatars without evidence.
 - Preserve causal order: trigger → response → escalation → payoff.
 - Keep the source video outside delivery ZIPs.
@@ -27,17 +34,26 @@ Never let a lower-level heuristic override explicit user direction or source evi
 - Do not claim a script, render, test, or QA check succeeded unless it was actually executed and inspected.
 
 ## Required workflow
-1. **Brief** — identify platform, language, target duration, requested style, output format, and any must-keep/must-avoid items.
-2. **Probe** — record duration, dimensions, FPS, codecs, audio streams, sample rate, channel layout, and stream start times.
-3. **Inspect** — make contact sheets and inspect full-resolution frames around candidate events.
-4. **Listen** — listen to candidate moments; use ASR only to speed up navigation.
-5. **Route** — select one primary skill and only relevant supporting skills.
-6. **Select** — score candidate moments with evidence; preserve enough context to understand the payoff.
-7. **Plan** — create an edit decision list (EDL) with source timecodes, shot layout, crop, captions, audio cues, and rationale.
-8. **Build** — prepare captions, overlays, audio mix, and FFmpeg commands.
-9. **Render** — run a short test render before the full render when feasible.
-10. **QA** — inspect actual output frames, audio, metadata, duration, sync, and package contents.
-11. **Deliver** — provide output files, render instructions, known limitations, and test status.
+1. Capture the brief and read this contract. Identify requested deliverables and constraints.
+2. Use [clip-router](clip-router/SKILL.md) for a provisional route and capability inventory.
+3. Probe, inspect frames and listen when available. Confirm the route from evidence.
+4. Use [editorial-intelligence](editorial-intelligence/SKILL.md) to establish context,
+   causal dependencies, narrative beats and visual attention priorities.
+5. Discover and compare clips through hook-pacing-retention when selection is needed.
+6. Verify transcript and speaker mapping before final dialogue captions.
+7. Let the selected specialists implement decisions in one edit plan, including
+   source evidence, timing, intensity and a simpler alternative for each shot.
+8. Validate the plan, prepare assets/commands and preview representative beats.
+9. Render and inspect the actual output. Revise decisions after preview if needed.
+10. Run technical QA, then editorial QA. Record automated, audiovisual-agent and
+    human reviews separately. Human listening still gates final audio comfort.
+11. Deliver files, reproducible instructions, limitations and actual test status.
+
+This is a dependency-aware workflow, not a compulsory sequence of every skill.
+Discovery can iterate with inspection and transcription. Transcript-only work
+does not need a camera or render pass; package-only work validates the supplied
+plan instead of inventing new story decisions. Missing perception produces a
+provisional artifact with REVIEW/NOT_RUN, not a fictitious completed review.
 
 ## Evidence and confidence
 Use these labels:
@@ -59,13 +75,30 @@ A final deliverable should include, as relevant:
 - QA report and keyframes;
 - short user instructions.
 
-A render package must not include source media unless the user explicitly requests it and confirms the distribution implications.
+A delivery ZIP must never include the original source video. Keep source media
+external and accept its path as an argument. Record asset rights separately.
+
+## Reproducible decisions and review boundaries
+- New editing work uses schema_version 2.0. Unversioned/v1 artifacts remain
+  readable for migration, but structural validity does not certify final delivery.
+- EDL source and output clocks must be explicit. See [schema guide](schemas/README.md).
+- Automated checks validate types, ranges, IDs, timing maps and receipt presence.
+  They cannot authenticate observations or prove captions are heard correctly.
+- A capable audiovisual agent can report what it actually inspected, including
+  tool/model, source interval, uncertainty and artifact. Human review resolves
+  uncertain language, cultural interpretation and final listening comfort.
+- No numerical score or successful encode alone establishes professional quality.
+- Style and editorial documents describe procedures. The [production tools](docs/production-tools.md)
+  provide bounded inspection, ASR import, an optional local ASR runner and an EDL
+  preview renderer. No model weights, tracker, rights database or universal
+  AI-perception capability is bundled. Unsupported renderer decisions must fail,
+  never be discarded silently. A successful preview remains REVIEW until QA.
 
 ## Status vocabulary
 - **PASS** — check was executed and passed.
 - **FAIL** — check was executed and failed.
 - **REVIEW** — evidence or human judgment is still required.
-- **SKIP** — check was not applicable or input was not supplied.
+- **SKIP** — check is genuinely not applicable; give a reason. Missing input uses NOT_RUN.
 - **NOT_RUN** — check has not been executed.
 
 Do not convert REVIEW, SKIP, or NOT_RUN into PASS.

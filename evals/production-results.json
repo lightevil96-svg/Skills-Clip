@@ -1,0 +1,175 @@
+{
+  "run_date": "2026-11-09T17:55:24.793328+00:00",
+  "base_commit": "6bc456cbcad4554f43c77f87ec4c65e568348299",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "checks": [
+    {
+      "name": "repository_validator",
+      "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python scripts/validate_skill_repo.py",
+      "status": "PASS"
+    },
+    {
+      "name": "regression_and_media_tests",
+      "command": "python -m unittest discover -s tests -q",
+      "status": "PASS",
+      "test_count": 91,
+      "skipped": false,
+      "media_test_count": 11
+    },
+    {
+      "name": "compileall",
+      "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python -m compileall -q scripts tests",
+      "status": "PASS"
+    },
+    {
+      "name": "diff_check",
+      "command": "git diff --check",
+      "status": "PASS"
+    },
+    {
+      "name": "legacy_package_smoke",
+      "command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python scripts/smoke_ffmpeg.py --output-dir test-results/production/legacy-smoke",
+      "status": "PASS",
+      "check_count": 10
+    }
+  ],
+  "ci": {
+    "status": "PASS",
+    "commit": "fcd9a6c9bacdd02765fb95d3d6cb8a66bad6f6c6",
+    "runs": [
+      {
+        "event": "pull_request",
+        "url": "https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42668941013",
+        "conclusion": "success"
+      },
+      {
+        "event": "push",
+        "url": "https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42668932478",
+        "conclusion": "success"
+      }
+    ],
+    "ubuntu": {
+      "status": "PASS",
+      "test_count": 91,
+      "skipped": false,
+      "package_checks": 10,
+      "ffmpeg": "6.1.1-3ubuntu5",
+      "job_id": 129339990099
+    },
+    "windows": {
+      "status": "PASS",
+      "test_count": 91,
+      "skipped": false,
+      "ffmpeg": "9.0.2-essentials_build-www.gyan.dev",
+      "job_id": 129339989957
+    },
+    "evidence": "Completed job logs inspected. Windows covers the Python media pipeline, not batch packaging. The final report commit changes only this execution record."
+  },
+  "not_run": [
+    "real-footage Gates 1–8",
+    "real-footage editorial E01–E12",
+    "human listening",
+    "faster-whisper model inference",
+    "WhisperX alignment inference",
+    "pyannote diarization",
+    "Qwen3-Omni perception",
+    "SAM 2 tracking",
+    "PySceneDetect runtime",
+    "OpenTimelineIO export",
+    "Windows batch package",
+    "Google Colab",
+    "production-resolution/performance benchmark"
+  ],
+  "limitations": [
+    "Synthetic tests are technical evidence only. Imported/generated ASR remains raw.",
+    "Evidence hashes do not authenticate semantic observations or human receipts.",
+    "Preview renderer rejects unsupported EDL treatments and does not implement loudness targets."
+  ],
+  "resolved_failures": [
+    "FFprobe bounded decoding initially omitted a delayed B-frame; decode margin added before timestamp filtering.",
+    "concat output initially lacked the last frame duration; declare proven native CFR to preserve frame count and average FPS.",
+    "Renderer accessed optional assets/ducking fields directly; added absent-field regression and schema-compatible defaults.",
+    "Windows FFmpeg 9.0.2 removed filter_complex_script; replaced with a single filter_complex argv argument and portable length limit.",
+    "Windows checkout changed legacy example line endings; added repository LF attributes so original JSON bytes remain reproducible."
+  ],
+  "failed_attempts": [
+    {
+      "status": "FAIL",
+      "commit": "6b799ff2b987b4eeef6e1245a64e000ff61e8209",
+      "ubuntu": {
+        "status": "PASS",
+        "test_count": 90,
+        "skipped": false,
+        "package_checks": 10,
+        "ffmpeg": "6.1.1-3ubuntu5",
+        "url": "https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42668302043"
+      },
+      "windows": {
+        "status": "FAIL",
+        "ffmpeg": "9.0.2",
+        "url": "https://github.com/lightevil96-svg/Skills-Clip/actions/runs/42668315104",
+        "reason": "Initial run failed on removed filter_complex_script flag and CRLF fixture conversion. Both corrected and regression passed in fcd9a6c."
+      }
+    }
+  ],
+  "implementation": {
+    "branch": "feat/editorial-intelligence-v2",
+    "pull_request": "https://github.com/lightevil96-svg/Skills-Clip/pull/1",
+    "code_commit": "fcd9a6c9bacdd02765fb95d3d6cb8a66bad6f6c6",
+    "new_skills": 0,
+    "upstream_repositories_inspected": 8,
+    "changed_files_since_editorial_upgrade": [
+      ".gitattributes",
+      ".github/workflows/validate.yml",
+      "AGENT_OPERATING_CONTRACT.md",
+      "README.md",
+      "clip-router/SKILL.md",
+      "docs/github-integration-research.md",
+      "docs/implementation-report.md",
+      "docs/production-tools.md",
+      "editorial-intelligence/SKILL.md",
+      "evals/README.md",
+      "evals/production-results.json",
+      "examples/transcript.editorial.example.json",
+      "ffmpeg-vertical-quality/SKILL.md",
+      "integrations/github-components.json",
+      "qa-and-self-review/SKILL.md",
+      "render-package-for-user/SKILL.md",
+      "requirements-asr.txt",
+      "schemas/README.md",
+      "schemas/transcript.schema.json",
+      "scripts/asr_bridge.py",
+      "scripts/inspect_source.py",
+      "scripts/media_tools.py",
+      "scripts/render_edl.py",
+      "scripts/validate_artifacts.py",
+      "scripts/validate_skill_repo.py",
+      "scripts/verify_evidence.py",
+      "tests/test_media_integration.py",
+      "tests/test_production.py",
+      "transcript-and-speaker-pipeline/SKILL.md"
+    ],
+    "before_after": [
+      {
+        "before": "Word-level ASR JSON needed manual reshaping and could lose untimed tokens.",
+        "after": "Importer retains ASR_RAW text, source offsets, anonymous speakers, raw hashes and unresolved alignment/text gaps."
+      },
+      {
+        "before": "Source evidence was checked only as declarations.",
+        "after": "Inspection bundles create actual source derivatives; integrity check verifies original metadata/hash and generated file hashes. Semantic truth still requires review."
+      },
+      {
+        "before": "EDL decisions had no general execution path beyond a fixed smoke command.",
+        "after": "A bounded renderer executes cuts, crops, fixed-size pans and verified static dialogue, validates output and refuses unsupported decisions."
+      },
+      {
+        "before": "Windows production path was untested.",
+        "after": "91 tests including real FFmpeg media execution pass on Windows FFmpeg 9.0.2 and Ubuntu FFmpeg 6.1.1."
+      }
+    ]
+  }
+}

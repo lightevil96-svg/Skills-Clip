@@ -1,0 +1,4 @@
+# Optional, NOT part of core validation dependencies. Model inference NOT_RUN.
+# Release inspected: https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.2.1
+# Transitive packages are not locked. Capture pip freeze after validating a deployment.
+faster-whisper==1.2.1

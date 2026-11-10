@@ -34,7 +34,28 @@ Identifikasi VOICE, GAME, BGM, SFX, dan AMBIENCE. Tandai apakah source track ter
 Ducking 6–12 dB saat voice aktif dapat menjadi titik awal. Atur attack/release agar tidak pumping. Jangan menurunkan game cue penting seperti alarm, hit, objective, scare, atau kemenangan.
 
 ### 4. SFX
-Gunakan whoosh untuk gerak yang terlihat, impact untuk payoff, pop/click untuk emphasis kecil, dan riser hanya jika ada build-up yang berujung. Silence juga merupakan pilihan desain.
+Pertimbangkan whoosh untuk gerak yang terlihat, impact untuk payoff atau accent
+kecil hanya jika memperjelas beat. Riser memerlukan build-up yang benar-benar
+berujung. Efek tersebut pilihan, bukan mapping otomatis. Silence juga pilihan.
+
+Ambil intent dari [editorial-intelligence](../editorial-intelligence/SKILL.md).
+Catat source event, waktu output, tujuan, intensitas, aset/lisensi, dan alternatif
+tanpa SFX. Jangan menambah hit, kill, tawa penonton, alarm atau suara kemenangan
+yang membuat penonton menyimpulkan kejadian palsu. Efek komedi harus terdengar
+sebagai treatment editorial, tetap terkait kejadian dan tidak menutupi dialog.
+
+### 4a. Musik, jeda dan transisi audio
+Pilih mood/tempo musik dari tujuan adegan dan brief, bukan label genre video
+saja. Bandingkan tanpa musik, khususnya cerita emosional atau horror. Pertahankan
+napas, ambience dan jeda yang membangun antisipasi; noise floor bukan otomatis
+dead air. Hindari musik sentimental yang memaksakan interpretasi sumber ambigu.
+
+Ducking boleh memakai gain envelope atau sidechain yang tersedia. Jika sumber
+sudah satu mix, penurunan gain menurunkan seluruh mix; jangan menjanjikan stem
+voice terpisah. Periksa attack/release dan volume antarshot dengan mendengar.
+Crossfade audio hanya untuk sambungan yang membutuhkannya, tanpa menggeser kata
+atau memindahkan reaksi. Uji sync pada onset aksi, dialog dan efek setelah retime.
+Jangan mengisi setiap cut dengan sound effect.
 
 ### 5. Loudness
 Analisis loudness dan true peak. Lakukan normalization sesuai kebutuhan; jangan menormalkan hanya karena angka target tanpa mendengar hasil. EBU R128 -23 LUFS adalah konteks broadcast, bukan target wajib Shorts.

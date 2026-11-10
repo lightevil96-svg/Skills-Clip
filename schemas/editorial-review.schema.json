@@ -1,0 +1,263 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skills-clip.example/schemas/editorial-review.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewed_artifact": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "review_mode": {
+      "enum": [
+        "automated",
+        "agent-audiovisual",
+        "human"
+      ]
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "REVIEW",
+        "SKIP",
+        "NOT_RUN"
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "storytelling_clarity": {
+          "$ref": "#/$defs/metric"
+        },
+        "hook_effectiveness": {
+          "$ref": "#/$defs/metric"
+        },
+        "timing_precision": {
+          "$ref": "#/$defs/metric"
+        },
+        "humor_emotional_delivery": {
+          "$ref": "#/$defs/metric"
+        },
+        "visual_composition": {
+          "$ref": "#/$defs/metric"
+        },
+        "caption_readability": {
+          "$ref": "#/$defs/metric"
+        },
+        "audio_comfort": {
+          "$ref": "#/$defs/metric"
+        },
+        "editing_naturalness": {
+          "$ref": "#/$defs/metric"
+        },
+        "effect_restraint": {
+          "$ref": "#/$defs/metric"
+        },
+        "overall_coherence": {
+          "$ref": "#/$defs/metric"
+        }
+      },
+      "required": [
+        "storytelling_clarity",
+        "hook_effectiveness",
+        "timing_precision",
+        "humor_emotional_delivery",
+        "visual_composition",
+        "caption_readability",
+        "audio_comfort",
+        "editing_naturalness",
+        "effect_restraint",
+        "overall_coherence"
+      ],
+      "additionalProperties": false
+    },
+    "technical_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "REVIEW",
+              "SKIP",
+              "NOT_RUN"
+            ]
+          },
+          "evidence_ref": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "name",
+          "status",
+          "evidence_ref"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "human_review": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "REVIEW",
+            "SKIP",
+            "NOT_RUN"
+          ]
+        },
+        "reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "status",
+        "reviewer",
+        "evidence_refs"
+      ],
+      "additionalProperties": false
+    },
+    "revisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "issue": {
+            "type": "string",
+            "minLength": 1
+          },
+          "at_s": {
+            "type": "number",
+            "minimum": 0
+          },
+          "action": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "open",
+              "resolved"
+            ]
+          },
+          "recheck_evidence": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "issue",
+          "at_s",
+          "action",
+          "status",
+          "recheck_evidence"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "reviewed_artifact",
+    "reviewer",
+    "review_mode",
+    "status",
+    "metrics",
+    "technical_checks",
+    "human_review",
+    "revisions",
+    "limitations"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "metric": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "REVIEW",
+            "SKIP",
+            "NOT_RUN"
+          ]
+        },
+        "score": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 4
+        },
+        "observation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "next_action": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "status",
+        "score",
+        "observation",
+        "evidence_refs",
+        "next_action"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

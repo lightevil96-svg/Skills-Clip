@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skills-clip.example/schemas/style-profile.schema.json",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_ref": {
+            "type": "string",
+            "minLength": 1
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "source_ref",
+          "available"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    },
+    "traits": {
+      "type": "object",
+      "properties": {
+        "subtitle-style": {
+          "$ref": "#/$defs/trait"
+        },
+        "font": {
+          "$ref": "#/$defs/trait"
+        },
+        "palette": {
+          "$ref": "#/$defs/trait"
+        },
+        "caption-placement": {
+          "$ref": "#/$defs/trait"
+        },
+        "camera": {
+          "$ref": "#/$defs/trait"
+        },
+        "zoom": {
+          "$ref": "#/$defs/trait"
+        },
+        "transitions": {
+          "$ref": "#/$defs/trait"
+        },
+        "sfx": {
+          "$ref": "#/$defs/trait"
+        },
+        "memes": {
+          "$ref": "#/$defs/trait"
+        },
+        "motion-graphics": {
+          "$ref": "#/$defs/trait"
+        },
+        "pacing": {
+          "$ref": "#/$defs/trait"
+        },
+        "identity": {
+          "$ref": "#/$defs/trait"
+        }
+      },
+      "required": [
+        "subtitle-style",
+        "font",
+        "palette",
+        "caption-placement",
+        "camera",
+        "zoom",
+        "transitions",
+        "sfx",
+        "memes",
+        "motion-graphics",
+        "pacing",
+        "identity"
+      ],
+      "additionalProperties": false
+    },
+    "asset_policy": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "scope",
+    "references",
+    "traits",
+    "asset_policy"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "trait": {
+      "type": "object",
+      "properties": {
+        "observation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "enum": [
+            "VERIFIED",
+            "CANDIDATE",
+            "UNKNOWN",
+            "USER_CONFIRMED"
+          ]
+        },
+        "reference_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "in_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "out_s": {
+          "type": "number",
+          "minimum": 0
+        },
+        "method": {
+          "enum": [
+            "audio-visual-inspection",
+            "visual-inspection",
+            "user-preference",
+            "document-only"
+          ]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "adaptation": {
+          "type": "string",
+          "minLength": 1
+        },
+        "exceptions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        }
+      },
+      "required": [
+        "observation",
+        "status",
+        "reference_id",
+        "in_s",
+        "out_s",
+        "method",
+        "confidence",
+        "adaptation",
+        "exceptions"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

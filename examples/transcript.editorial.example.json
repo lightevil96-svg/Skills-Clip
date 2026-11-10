@@ -1,0 +1,87 @@
+{
+  "schema_version": "2.0",
+  "source_file": "synthetic-not-footage.mp4",
+  "source_duration_s": 20,
+  "content_kind": "synthetic",
+  "audio_source_access": false,
+  "language": "id",
+  "asr_model": null,
+  "verification_policy": "human-listen-required",
+  "speakers": [
+    {
+      "speaker_id": "S1",
+      "display_name": null,
+      "avatar_ref": null,
+      "mapping_status": "CANDIDATE"
+    },
+    {
+      "speaker_id": "S2",
+      "display_name": null,
+      "avatar_ref": null,
+      "mapping_status": "CANDIDATE"
+    }
+  ],
+  "words": [
+    {
+      "id": "w1",
+      "start": 4.2,
+      "end": 4.4,
+      "text": "Aku",
+      "speaker_id": "S1",
+      "language": "id",
+      "asr_confidence": null,
+      "verification_status": "ASR_RAW",
+      "verified_by": null,
+      "notes": "Synthetic test words, not actual speech or an executed ASR result."
+    },
+    {
+      "id": "w2",
+      "start": 4.4,
+      "end": 4.7,
+      "text": "tidak",
+      "speaker_id": "S1",
+      "language": "id",
+      "asr_confidence": null,
+      "verification_status": "ASR_RAW",
+      "verified_by": null,
+      "notes": "Synthetic test words, not actual speech or an executed ASR result."
+    },
+    {
+      "id": "w3",
+      "start": 4.7,
+      "end": 5.2,
+      "text": "menyentuh",
+      "speaker_id": "S1",
+      "language": "id",
+      "asr_confidence": null,
+      "verification_status": "ASR_RAW",
+      "verified_by": null,
+      "notes": "Synthetic test words, not actual speech or an executed ASR result."
+    },
+    {
+      "id": "w4",
+      "start": 5.2,
+      "end": 5.7,
+      "text": "tombol.",
+      "speaker_id": "S1",
+      "language": "id",
+      "asr_confidence": null,
+      "verification_status": "ASR_RAW",
+      "verified_by": null,
+      "notes": "Synthetic test words, not actual speech or an executed ASR result."
+    },
+    {
+      "id": "w5",
+      "start": 6.2,
+      "end": 6.7,
+      "text": "Oh.",
+      "speaker_id": "S2",
+      "language": "id",
+      "asr_confidence": null,
+      "verification_status": "ASR_RAW",
+      "verified_by": null,
+      "notes": "Synthetic test words, not actual speech or an executed ASR result."
+    }
+  ],
+  "unresolved_words": []
+}

@@ -22,6 +22,11 @@ Membuat penonton memahami alasan menonton sejak awal dan tetap mengikuti alur sa
 ### 1. Cari kandidat
 Gunakan perubahan state game, reaksi avatar, pergantian speaker, overlap, jeda, chat, atau hasil tak terduga. Waveform dapat membantu menemukan aktivitas, tetapi tidak menjelaskan makna dialog.
 
+Mulai dari context brief [editorial-intelligence](../editorial-intelligence/SKILL.md).
+Untuk setiap kandidat catat pemicu, respons, payoff, konteks prasyarat, interval
+bukti dan alasan ditolak/dipilih. Momen sunyi dengan cerita jelas dapat mengalahkan
+teriakan tanpa konteks. Pisahkan observasi dari interpretasi humor/emosi.
+
 ### 2. Skor 0–12
 Beri 0–2 poin per dimensi:
 - Clarity: momen dapat dipahami?
@@ -42,6 +47,11 @@ Beri 0–2 poin per dimensi:
 - Exit: akhiri setelah beat selesai.
 
 Hook 0–1,5 detik dan reaction hold 0,3–1,2 detik adalah starting point eksperimen, bukan hukum universal.
+
+Gunakan hanya beat yang diperlukan. Percakapan emosional dapat memakai konteks,
+jawaban dan reaction hold tanpa eskalasi komedi. Jangan memaksa seluruh struktur
+atau mempercepat setiap klip. Kembalikan kandidat dan konteks ke decision brief;
+skor 0–12 untuk discovery berbeda dari rubric editorial QA 0–4.
 
 ### 4. Potong dengan alasan
 - Conversation: pertahankan negasi, respons, dan setup joke.

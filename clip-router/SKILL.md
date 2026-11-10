@@ -42,6 +42,20 @@ Ambil tujuan platform, bahasa, target durasi, gaya referensi, apakah pengguna me
 
 Jika konten campuran, segmentasikan berdasarkan beat dan tentukan rute per segmen.
 
+### 3a. Handoff editorial dan kemampuan
+Untuk pemilihan/editing kreatif, baca
+[editorial-intelligence](../editorial-intelligence/SKILL.md) setelah inspeksi awal.
+Kembalikan context brief, sumber bukti, beat, unknowns dan fokus visual. Kirim
+brief tersebut ke hook-pacing-retention untuk discovery, lalu ke specialist
+yang dipilih untuk implementasi. Jangan duplikasi pemeringkatan kandidat di
+modul editorial. Catat kemampuan mendengar/melihat yang benar-benar tersedia.
+
+Transcript-only cukup memakai pipeline transcript; encode/package-only memakai
+plan yang sudah ada dan QA terkait. Jika route campuran, isi `shots[].route`.
+Beat percakapan tetap memakai speaker-follow meskipun clip utamanya gameplay.
+Aturan layout specialist mengikat skill FFmpeg; kemampuan membuat split-screen
+bukan alasan menggunakannya. Shared shot hanya untuk interaksi yang relevan.
+
 ### 4. Buat edit decision list
 Setiap shot harus memiliki:
 - source in/out time;
@@ -54,6 +68,11 @@ Setiap shot harus memiliki:
 - alasan pemilihan.
 
 Jangan render sebelum EDL cukup jelas untuk direproduksi.
+
+Gunakan v2 [edit plan](../schemas/edit-plan.schema.json): setiap shot menyimpan
+`editorial` dan waktu output. Jalankan validator artifact sebelum render.
+Perbaiki error struktural; unknown perseptual tetap REVIEW. Contoh legacy yang
+valid tidak otomatis menjadi siap render atau siap delivery.
 
 ### 5. Render dan QA
 Panggil ffmpeg-vertical-quality, audio-mix-and-sfx, render-package-for-user, dan qa-and-self-review sesuai kebutuhan. Pisahkan hasil otomatis dari penilaian manusia.
@@ -84,3 +103,7 @@ ffprobe -v error -show_entries format=duration:stream=codec_type,codec_name,widt
 
 ## Batas kemampuan AI
 AI dapat mengorganisasi bukti, menyusun EDL, dan menjalankan pemeriksaan teknis. Humor, ekspresi, kualitas suara, serta keputusan akhir atas ambiguitas memerlukan review manusia.
+
+## Production integration
+
+For executable capability selection, use the [production tool matrix](../docs/production-tools.md) and [GitHub integration research](../docs/github-integration-research.md). Route to the bounded renderer only when every requested treatment is supported. Optional model names do not establish installed capabilities.

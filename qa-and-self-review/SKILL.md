@@ -51,6 +51,30 @@ Dengarkan dengan earphone dan speaker HP pada volume rendah serta normal. Periks
 ### 5. Pemeriksaan paket
 Jika ZIP dibuat, pastikan source video tidak ada di dalamnya. Jalankan script dengan path berspasi bila memungkinkan. Catat versi FFmpeg dan status test.
 
+### 6. Editorial quality assessment
+Gunakan intent dan bukti [editorial-intelligence](../editorial-intelligence/SKILL.md).
+Nilai 0–4 dengan [rubric berindikator](references/editorial-rubric.md) untuk
+storytelling clarity, hook effectiveness, timing precision, humor/emotional
+delivery, visual composition, caption readability, audio comfort, editing
+naturalness, effect restraint dan overall coherence.
+
+Simpan [editorial review JSON](../schemas/editorial-review.schema.json) terpisah
+dari technical checks. Catat mode automated, agent-audiovisual atau human.
+Automated checks tidak memberi skor editorial. NOT_RUN/REVIEW/SKIP memakai
+score null; jangan mengisi nilai rata-rata atau default. Setiap skor perlu bukti
+dan setiap kekurangan perlu tindakan spesifik beserta timestamp.
+
+Bandingkan treatment sederhana dengan treatment ekspresif pada beat yang sama.
+Periksa apakah efek membantu makna/timing, apakah silence berguna terjaga, dan
+apakah ending menyelesaikan adegan. Nilai tinggi tidak membuktikan profesional,
+viral, atau cocok untuk semua penonton. Pertahankan REVIEW jika bukti kurang.
+
+### 7. Perbaiki dan periksa kembali
+Revisi masalah utama sebelum dekorasi tambahan. Setelah retime/crop berubah,
+periksa ulang caption, gerak, audio dan batas shot yang terdampak. Rekam issue,
+aksi, status dan artifact recheck. Jangan mengganti FAIL menjadi PASS hanya
+karena alasan perubahan sudah ditulis. Human review tetap terpisah dan nyata.
+
 ## Potongan FFmpeg
 Deteksi black segment:
 
@@ -79,3 +103,7 @@ ffmpeg -hide_banner -i OUTPUT.mp4 -vf "blackdetect=d=0.20:pix_th=0.10" -an -f nu
 
 ## Batas kemampuan AI
 QA otomatis hanya mengukur hal yang dapat dihitung. Komposisi, humor, naturalness, keterbacaan, dan kenyamanan audio memerlukan review manusia.
+
+## Production integration
+
+Use [verify_evidence.py](../scripts/verify_evidence.py) to check actual source metadata/hash and inspection-file hashes. Follow the [production guide](../docs/production-tools.md). File integrity PASS is distinct from audiovisual evidence verification, editorial quality and human listening.
