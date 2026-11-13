@@ -126,19 +126,13 @@ license and SHA-256. Keep asset paths relative to the audio-design file.
 After the ordinary EDL preview is rendered, apply the audio event plan:
 
 ```bash
-python scripts/render_audio_events.py \\
-  --video work/preview/preview.mp4 \\
-  --audio-plan work/audio-design.json \\
-  --edit-plan work/edit-plan.json \\
-  --transcript work/transcript.json \\
-  --output-dir work/audio-preview
+python scripts/render_audio_events.py --video work/preview/preview.mp4 --audio-plan work/audio-design.json --edit-plan work/edit-plan.json --transcript work/transcript.json --output-dir work/audio-preview
 ```
 
 `--transcript` is required when any event uses `trigger: word-emphasis`. All
 events use output seconds and must link to evidence IDs in the matching edit
-plan. Word accents must map to verified word IDs; motion cues need verified
-visual evidence and a motion camera decision; transition cues must align to a
-real shot boundary. Assets are hash-checked and paths cannot escape the audio
+plan. Word accents must map to verified word IDs; motion cues need verified visual evidence mapped to the observed movement;
+transition cues must align to a real shot boundary. Assets are hash-checked and paths cannot escape the audio
 plan directory. The renderer limits the plan to 60 events and at most two
 simultaneous SFX events, preserves the video stream, mixes AAC 48 kHz, applies
 source-mix sidechain ducking and a conservative peak limiter. It does not isolate
