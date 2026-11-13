@@ -46,7 +46,7 @@ Periksa frame awal, 1–2 detik pertama, tiap perubahan layout, caption, overlay
 - Safe-zone diperiksa secara otomatis bila tersedia dan manual pada preview.
 
 ### 4. Pemeriksaan audio
-Dengarkan dengan earphone dan speaker HP pada volume rendah serta normal. Periksa voice clarity, BGM ducking, game cue, clipping, pumping, dan audio cut.
+Dengarkan dengan earphone dan speaker HP pada volume rendah serta normal. Periksa voice clarity, BGM ducking, game cue, clipping, pumping, audio cut, dan setiap SFX. Cocokkan event ID/timestamp dengan sumbernya; pastikan kata penting, plosive, tawa, serta jeda tetap jelas. Sidechain pada mixed source bukan voice isolation.
 
 ### 5. Pemeriksaan paket
 Jika ZIP dibuat, pastikan source video tidak ada di dalamnya. Jalankan script dengan path berspasi bila memungkinkan. Catat versi FFmpeg dan status test.
@@ -91,6 +91,9 @@ ffmpeg -hide_banner -i OUTPUT.mp4 -vf "blackdetect=d=0.20:pix_th=0.10" -an -f nu
 - [ ] Keyframes dilihat.
 - [ ] Caption diverifikasi dan aman.
 - [ ] Audio didengar manusia.
+- [ ] Setiap SFX punya evidence, timing, source/license/hash dan fungsi yang jelas.
+- [ ] Tidak ada SFX yang menutupi kata atau menyiratkan kejadian palsu.
+- [ ] Audio mix receipt menyatakan batas sidechain dan human-listening status.
 - [ ] ZIP tidak berisi source video.
 - [ ] Semua FAIL/REVIEW/SKIP dilaporkan.
 
