@@ -94,6 +94,9 @@ ffmpeg -hide_banner -i OUTPUT.mp4 -vf "blackdetect=d=0.20:pix_th=0.10" -an -f nu
 - [ ] Setiap SFX punya evidence, timing, source/license/hash dan fungsi yang jelas.
 - [ ] Tidak ada SFX yang menutupi kata atau menyiratkan kejadian palsu.
 - [ ] Audio mix receipt menyatakan batas sidechain dan human-listening status.
+- [ ] Setiap SFX punya evidence, timing, source/license/hash dan fungsi yang jelas.
+- [ ] Tidak ada SFX yang menutupi kata atau menyiratkan kejadian palsu.
+- [ ] Audio mix receipt menyatakan batas sidechain dan human-listening status.
 - [ ] ZIP tidak berisi source video.
 - [ ] Semua FAIL/REVIEW/SKIP dilaporkan.
 
