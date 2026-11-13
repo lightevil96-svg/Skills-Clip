@@ -36,13 +36,15 @@ membandingkan piksel crop, posisi audio dua nada, pan/easing, caption, sumber
 tanpa audio, native fractional FPS, penolakan VFR dan perubahan hash bukti.
 Windows dan Ubuntu memakai jalur Python yang sama. Smoke ZIP/Bash tetap diuji
 khusus Linux; Windows batch dan Colab tidak otomatis teruji oleh job Windows.
+Audio-event unit/integration tests memakai aset dan video sintetis; human listening
+serta kecocokan SFX pada footage VTuber nyata tetap NOT_RUN sampai direview.
 Lihat [hasil production](production-results.json), [panduan](../docs/production-tools.md)
 dan [riset GitHub](../docs/github-integration-research.md). Hasil awal tetap
 tersimpan dalam [snapshot audit pertama](implementation-results.json).
 
 ## Protokol regression
-Tetap jalankan Gate 1–8 pada footage yang sesuai. Tambahkan E01–E12 untuk
-kemampuan editorial. Untuk setiap run simpan case ID, source hash, route, plan,
+Tetap jalankan Gate 1–9 pada footage yang sesuai. Tambahkan E01–E16 untuk
+kemampuan editorial, termasuk word-accent timing, motion/reaction sync, voice-priority mix dan asset integrity. Untuk setiap run simpan case ID, source hash, route, plan,
 transcript, render/tool version, reviewer/mode, status, evidence dan revisi.
 Jangan ubah ketidaktersediaan footage menjadi SKIP; gunakan NOT_RUN.
 
