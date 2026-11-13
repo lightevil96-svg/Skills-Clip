@@ -5,6 +5,7 @@ import re
 import sys
 
 import yaml
+from jsonschema import Draft202012Validator
 
 from validate_artifacts import ROOT, SKILLS, load_json, validate
 
@@ -54,7 +55,10 @@ def check_structure(root=ROOT):
         if folder != 'editorial-intelligence' and '../editorial-intelligence/SKILL.md' not in body:
             errors.append(f'{folder}: missing editorial handoff link')
     for required in ['README.md', 'AGENT_OPERATING_CONTRACT.md', 'evals/cases.md',
-                     'schemas/README.md', 'qa-and-self-review/references/editorial-rubric.md']:
+                     'schemas/README.md', 'schemas/audio-design.schema.json',
+                     'examples/audio-design.example.json', 'scripts/generate_sfx_pack.py',
+                     'scripts/render_audio_events.py', 'audio-mix-and-sfx/references/expressive-sound-design.md',
+                     'qa-and-self-review/references/editorial-rubric.md']:
         if not (root / required).exists():
             errors.append(f'MISSING {required}')
     for path in root.rglob('*.md'):
@@ -83,10 +87,10 @@ def check_structure(root=ROOT):
             if target and not (path.parent / target).exists():
                 errors.append(f'{path.relative_to(root)}: broken link {target}')
     cases = (root/'evals/cases.md').read_text() if (root/'evals/cases.md').exists() else ''
-    for gate in range(1, 9):
+    for gate in range(1, 10):
         if not re.search(rf'^## Gate {gate}\b', cases, re.M):
             errors.append(f'Missing original evaluation gate {gate}')
-    for case in range(1, 13):
+    for case in range(1, 17):
         if not re.search(rf'^## E{case:02}\b', cases, re.M):
             errors.append(f'Missing editorial scenario E{case:02}')
     return errors
@@ -113,15 +117,23 @@ def check_examples():
         except (OSError, ValueError) as exc:
             errors.append(f'{name}: {exc}')
     for path in (ROOT/'examples').glob('*.json'):
-        if path.name not in mapping:
+        if path.name not in mapping and path.name != 'audio-design.example.json':
             errors.append(f'Unregistered example {path.name}')
+    try:
+        schema = load_json(ROOT/'schemas/audio-design.schema.json')
+        Draft202012Validator.check_schema(schema)
+        Draft202012Validator(schema).validate(load_json(ROOT/'examples/audio-design.example.json'))
+    except Exception as exc:
+        errors.append(f'audio-design.example.json/schema: {exc}')
     return errors
 
 
 def check_integrations():
     errors = []
     required = ['scripts/media_tools.py', 'scripts/inspect_source.py', 'scripts/asr_bridge.py',
-                'scripts/verify_evidence.py', 'scripts/render_edl.py', 'docs/production-tools.md',
+                'scripts/verify_evidence.py', 'scripts/render_edl.py', 'scripts/generate_sfx_pack.py',
+                'scripts/render_audio_events.py', 'schemas/audio-design.schema.json',
+                'examples/audio-design.example.json', 'docs/production-tools.md',
                 'docs/github-integration-research.md', 'requirements-asr.txt']
     errors.extend(f'MISSING {name}' for name in required if not (ROOT/name).is_file())
     try:
@@ -148,7 +160,7 @@ def main():
         for error in errors:
             print('- '+error)
         return 1
-    print(f'PASS: {len(SKILLS)} skills, local links, 5 schemas, 6 examples and integration inventory checked.')
+    print(f'PASS: {len(SKILLS)} skills, local links, 6 schemas, 7 examples and integration inventory checked.')
     print('Checks validate structure and declared consistency, not source truth or editorial quality.')
     return 0
 
