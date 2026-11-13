@@ -76,8 +76,8 @@ class GeneratorTests(unittest.TestCase):
 
 class GraphTests(unittest.TestCase):
     def test_filtergraph_has_voice_sidechain_and_limiter(self):
-        event = {'id': 'one', 'at_s': .5, 'duration_s': .2, '_gain_db': -18,
-                 '_fade_in_s': .01, '_fade_out_s': .04}
+        event = {'id': 'one', 'at_s': .5, 'duration_s': .2, 'gain_db': -18,
+                 'fade_in_s': .01, 'fade_out_s': .04}
         graph = build_filtergraph([event], has_audio=True, duration=2.0,
                                   ducking={'enabled': True, 'threshold_db': -30,
                                            'ratio': 2.5, 'attack_ms': 10, 'release_ms': 180},
@@ -116,6 +116,24 @@ class ValidationTests(unittest.TestCase):
             audio['events'][0]['duration_s'] = .2
             with self.assertRaisesRegex(ValueError, 'extends beyond'):
                 validate_audio_plan(audio, plan, asset_root=root)
+
+    def test_word_emphasis_requires_verified_mapped_word(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            pack = generate_pack(root / 'sfx')
+            asset = pack['assets'][0]
+            plan = edit_fixture('a' * 64)
+            transcript = {'source_sha256': 'a' * 64, 'words': [{
+                'id': 'w1', 'start': 0.40, 'end': 0.58,
+                'verification_status': 'VERIFIED', 'text': 'penting'
+            }]}
+            audio = audio_fixture(f'sfx/{asset["path"]}', asset['sha256'], 'a' * 64)
+            audio['events'][0].update(trigger='word-emphasis', at_s=0.45, word_ids=['w1'],
+                                      evidence_ids=['ev-word'])
+            validate_audio_plan(audio, plan, transcript=transcript, asset_root=root)
+            transcript['words'][0]['verification_status'] = 'ASR_RAW'
+            with self.assertRaisesRegex(ValueError, 'verified words'):
+                validate_audio_plan(audio, plan, transcript=transcript, asset_root=root)
 
     def test_rejects_path_escape(self):
         with tempfile.TemporaryDirectory() as tmp:
