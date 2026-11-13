@@ -53,6 +53,15 @@ Use the [decision guide](references/decision-guide.md) for timing and intensity.
 Let the primary specialist implement those choices; revise this same record if
 the preview changes the decision. Do not create a second conflicting EDL.
 
+### 3a. Coordinate expressive audio
+Identify only source-supported word accents, visible motion, reactions, meaningful
+transitions and payoff impacts. Compare each with silence/no added SFX. Link every
+proposed event to verified evidence; word accents additionally require verified
+word IDs. Keep SFX timing on the output clock in a separate
+[audio design plan](../schemas/audio-design.schema.json), then hand it to
+[audio-mix-and-sfx](../audio-mix-and-sfx/SKILL.md). Do not ask the base EDL renderer
+to execute effects it explicitly rejects.
+
 ### 4. Set attention order
 Rank visual focus per beat. Conversation usually prioritizes the active face
 and dialogue; clutch gameplay prioritizes target/HUD before avatar reaction;
