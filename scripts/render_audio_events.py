@@ -221,10 +221,6 @@ def validate_audio_plan(audio_plan: dict, edit_plan: dict, *, transcript: dict |
                 raise ValueError(f'{asset_id}: audio asset is shorter than event duration')
             resolved_assets[asset_id] = resolved
         intervals.append((at, at + duration, event_id))
-        event['_resolved_asset'] = str(resolved_assets[asset_id])
-        event['_gain_db'] = gain
-        event['_fade_in_s'] = fade_in
-        event['_fade_out_s'] = fade_out
 
     # Limit simultaneous accents. Dense sound beds belong in a separately reviewed mix.
     for at, end, event_id in intervals:
@@ -262,9 +258,9 @@ def build_filtergraph(events: list[dict], *, has_audio: bool, duration: float,
         input_index = index + 1
         duration_s = float(event['duration_s'])
         delay_ms = round(float(event['at_s']) * 1000)
-        gain_db = float(event['_gain_db'])
-        fade_in = float(event['_fade_in_s'])
-        fade_out = float(event['_fade_out_s'])
+        gain_db = float(event['gain_db'])
+        fade_in = float(event.get('fade_in_s', 0))
+        fade_out = float(event.get('fade_out_s', 0))
         chain = (f'[{input_index}:a:0]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,'
                  f'atrim=duration={duration_s:.6f},asetpts=PTS-STARTPTS,volume={gain_db:.3f}dB')
         if fade_in > 0:
@@ -311,7 +307,7 @@ def render_audio_events(video_path: str | Path, audio_plan_path: str | Path,
     (output / 'audio-filtergraph.txt').write_text(graph + '\n', encoding='utf-8')
     argv = ['ffmpeg', '-nostdin', '-hide_banner', '-v', 'error', '-n', '-i', str(video_path)]
     for event in events:
-        argv += ['-i', event['_resolved_asset']]
+        argv += ['-i', str(resolved_assets[event['asset_id']])]
     argv += ['-filter_complex', graph, '-map', '0:v:0', '-map', '[aout]', '-c:v', 'copy',
              '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-movflags', '+faststart',
              'preview-with-sfx.mp4']
@@ -340,6 +336,7 @@ def render_audio_events(video_path: str | Path, audio_plan_path: str | Path,
         'input_video_sha256': sha256(video_path),
         'source_sha256': audio_plan['source_sha256'],
         'audio_plan_sha256': sha256(audio_plan_path),
+        'edit_plan_sha256': sha256(edit_plan_path),
         'output_sha256': sha256(rendered),
         'ffmpeg_version': run(['ffmpeg', '-version']).splitlines()[0],
         'events_applied': [{'id': e['id'], 'trigger': e['trigger'], 'at_s': e['at_s'],
