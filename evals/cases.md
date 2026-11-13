@@ -217,7 +217,7 @@ Expected editorial behavior: use one whoosh at the motion onset or one light rea
 PASS criteria: event is source-linked, restrained and synchronized; the simpler no-SFX alternative is compared.
 FAIL criteria: whoosh on idle movement, boing on ambiguous expression, or an impact implying an action that did not occur.
 Common mistakes: treating every camera keyframe as a reason for sound.
-Evidence required: inspected frames, shot camera decision, evidence IDs and SFX preview.
+Evidence required: inspected frames, source motion interval, evidence IDs and SFX preview.
 Execution status: NOT_RUN until audiovisual review.
 
 ## E15 Voice-priority mix
