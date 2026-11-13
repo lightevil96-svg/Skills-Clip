@@ -29,6 +29,7 @@ Never let a lower-level heuristic override explicit user direction or source evi
 - Preserve causal order: trigger → response → escalation → payoff.
 - Keep the source video outside delivery ZIPs.
 - Do not add music, meme, zoom, flash, transition, CTA, or title card without a reason.
+- Sound effects are event-driven accents, never decoration on every word/cut. Each added SFX needs source evidence, output timing, an asset source/license/hash, a reason and a simpler no-SFX alternative. Protect dialogue; human listening remains required.
 - Avoid visual layouts that hide source evidence. In conversation clips, speaker-follow solo shots are the default; a shared two-shot is for genuine overlap/shared reaction. Persistent stacked/split-screen is prohibited unless explicitly requested.
 - Use the least destructive render approach that satisfies the brief.
 - Do not claim a script, render, test, or QA check succeeded unless it was actually executed and inspected.
@@ -43,11 +44,14 @@ Never let a lower-level heuristic override explicit user direction or source evi
 6. Verify transcript and speaker mapping before final dialogue captions.
 7. Let the selected specialists implement decisions in one edit plan, including
    source evidence, timing, intensity and a simpler alternative for each shot.
-8. Validate the plan, prepare assets/commands and preview representative beats.
-9. Render and inspect the actual output. Revise decisions after preview if needed.
-10. Run technical QA, then editorial QA. Record automated, audiovisual-agent and
+8. When SFX are requested or materially improve a beat, create a separate
+   `audio-design.json` linked to the edit plan and verified transcript. Generate
+   or resolve licensed assets, record SHA-256, then run the dedicated audio pass.
+9. Validate the plan, prepare assets/commands and preview representative beats.
+10. Render and inspect the actual output. Revise decisions after preview if needed.
+11. Run technical QA, then editorial QA. Record automated, audiovisual-agent and
     human reviews separately. Human listening still gates final audio comfort.
-11. Deliver files, reproducible instructions, limitations and actual test status.
+12. Deliver files, reproducible instructions, limitations and actual test status.
 
 This is a dependency-aware workflow, not a compulsory sequence of every skill.
 Discovery can iterate with inspection and transcription. Transcript-only work
@@ -83,7 +87,9 @@ external and accept its path as an argument. Record asset rights separately.
   readable for migration, but structural validity does not certify final delivery.
 - EDL source and output clocks must be explicit. See [schema guide](schemas/README.md).
 - Automated checks validate types, ranges, IDs, timing maps and receipt presence.
-  They cannot authenticate observations or prove captions are heard correctly.
+  The separate audio event renderer checks asset hashes, event timing, evidence
+  links, word mapping, overlap limits and technical output. Neither validator nor
+  renderer can authenticate an observation or prove perceptual sound quality.
 - A capable audiovisual agent can report what it actually inspected, including
   tool/model, source interval, uncertainty and artifact. Human review resolves
   uncertain language, cultural interpretation and final listening comfort.
