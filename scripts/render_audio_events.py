@@ -67,6 +67,36 @@ def _map_word_to_output(plan: dict, word: dict):
     return min(x[0] for x in mapped), max(x[1] for x in mapped)
 
 
+
+def _map_source_interval_to_output(plan: dict, source_in: float, source_out: float):
+    mapped = []
+    for shot in plan['shots']:
+        segments = shot.get('time_map') or [{
+            'kind': 'play', 'source_in_s': shot['in_s'], 'source_out_s': shot['out_s'],
+            'output_in_s': shot['output_in_s'], 'output_out_s': shot['output_out_s'],
+        }]
+        for seg in segments:
+            if seg['kind'] != 'play':
+                continue
+            seg_in, seg_out = float(seg['source_in_s']), float(seg['source_out_s'])
+            out_in, out_out = float(seg['output_in_s']), float(seg['output_out_s'])
+            if abs(source_out - source_in) <= 0.0001:
+                if seg_in <= source_in <= seg_out:
+                    ratio = (out_out - out_in) / (seg_out - seg_in)
+                    point = out_in + (source_in - seg_in) * ratio
+                    mapped.append((point, point))
+                continue
+            left, right = max(source_in, seg_in), min(source_out, seg_out)
+            if right <= left:
+                continue
+            ratio = (out_out - out_in) / (seg_out - seg_in)
+            mapped.append((out_in + (left - seg_in) * ratio,
+                           out_in + (right - seg_in) * ratio))
+    if not mapped:
+        return None
+    return min(x[0] for x in mapped), max(x[1] for x in mapped)
+
+
 def validate_audio_plan(audio_plan: dict, edit_plan: dict, *, transcript: dict | None = None, asset_root: Path | None = None):
     schema_path = REPO_ROOT / 'schemas' / 'audio-design.schema.json'
     schema = load_json(schema_path)
@@ -156,14 +186,22 @@ def validate_audio_plan(audio_plan: dict, edit_plan: dict, *, transcript: dict |
                 raise ValueError(f'{event_id}: SFX must align within 200 ms of the first linked word onset')
 
         if trigger == 'motion':
-            matching = [shot for shot in edit_plan['shots']
-                        if shot['output_in_s'] - 0.05 <= at <= shot['output_out_s'] + 0.05]
-            if not matching or not any(shot['editorial']['camera']['action'] in
-                                       {'pan', 'track', 'punch-in', 'punch-out', 'reaction-close-up'}
-                                       for shot in matching):
-                raise ValueError(f'{event_id}: motion SFX needs a matching motion camera decision')
-            if any(evidence[eid].get('method') != 'visual-inspection' for eid in evidence_ids):
+            visual_ids = [eid for eid in evidence_ids
+                          if evidence[eid].get('method') == 'visual-inspection']
+            if not visual_ids:
                 raise ValueError(f'{event_id}: motion SFX requires visual-inspection evidence')
+            aligned = False
+            for eid in visual_ids:
+                item = evidence[eid]
+                if not item.get('observation'):
+                    continue
+                mapped = _map_source_interval_to_output(
+                    edit_plan, float(item['in_s']), float(item['out_s']))
+                if mapped and mapped[0] - 0.15 <= at <= mapped[1] + 0.15:
+                    aligned = True
+                    break
+            if not aligned:
+                raise ValueError(f'{event_id}: motion SFX must align to a mapped visual-evidence interval')
 
         if trigger == 'transition':
             boundaries = [float(shot['output_in_s']) for shot in edit_plan['shots'][1:]]
