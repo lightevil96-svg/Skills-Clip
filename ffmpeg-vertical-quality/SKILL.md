@@ -91,4 +91,4 @@ Metrik numerik tidak dapat memutuskan komposisi terbaik atau detail yang penting
 
 ## Production integration
 
-The [bounded EDL preview renderer](../scripts/render_edl.py) executes supported cuts, crops and fixed-size pans. Read its [support matrix](../docs/production-tools.md) before routing. It rejects unimplemented zoom, effects, retiming and mix changes instead of silently ignoring them.
+The [bounded EDL preview renderer](../scripts/render_edl.py) executes supported cuts, crops and fixed-size pans. The separate [audio event renderer](../scripts/render_audio_events.py) applies evidence-linked SFX after the base preview. Read the [support matrix](../docs/production-tools.md) before routing. The visual renderer still rejects unimplemented zoom, visual effects and retiming instead of silently ignoring them.
