@@ -63,6 +63,10 @@ Entrance/exit singkat boleh memperjelas onset/emphasis. Hentikan animasi selama
 penonton membaca. Movement hanya saat mengikuti perubahan komposisi atau gag
 yang terbukti; caption tidak perlu bounce atau bergerak sepanjang waktu.
 Uji posisi awal, tengah gerak dan akhir terhadap mata, mulut, HUD dan UI platform.
+Untuk satu kata yang benar-benar penting, sinkronkan visual emphasis dengan
+`word_ids` terverifikasi. Jika SFX ikut dipakai, letakkan event terpisah dalam
+`audio-design.json`; jangan mengandalkan warna subtitle sebagai bukti bahwa kata
+tersebut sudah diverifikasi atau menambahkan pop pada setiap kata.
 
 Bedakan `dialogue`, `translation`, `reading-aid`, `emphasis` dan `information`.
 Caption informasi editor harus jelas bukan kutipan dan didukung bukti. V2
