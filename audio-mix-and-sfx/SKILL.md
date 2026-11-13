@@ -85,6 +85,16 @@ python scripts/render_audio_events.py \
 - Tidak ada loudness normalization otomatis pada SFX pass.
 - Dengarkan pada earphone dan speaker HP. Periksa kata penting, plosive, sibilance, tawa, transisi, awal/akhir video, dan perubahan loudness antarbagian.
 
+## Potongan FFmpeg
+
+Contoh perintah audio overlay yang digunakan renderer:
+
+```bash
+python scripts/render_audio_events.py --video work/preview/preview.mp4 --audio-plan work/audio-design.json --edit-plan work/edit-plan.json --transcript work/transcript.json --output-dir work/audio-preview
+```
+
+Perintah ini memvalidasi evidence, asset hash dan timing output, lalu mencampur SFX dengan source-mix ducking. Gunakan `--transcript` bila ada event `word-emphasis`.
+
 ## Checklist QA
 - [ ] Setiap SFX punya alasan dan evidence IDs yang valid.
 - [ ] Word-emphasis cocok dengan word ID terverifikasi dan output timing.
