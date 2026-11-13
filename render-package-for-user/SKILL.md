@@ -28,6 +28,8 @@ clip-package/
 ├── render.sh
 ├── render.bat
 ├── edit-plan.json
+├── audio-design.json       # only when SFX are used
+├── audio-assets/           # only permitted, hash-recorded assets
 ├── captions/
 │   └── captions.ass
 ├── assets/
@@ -44,7 +46,8 @@ Folder kosong tidak perlu dibuat.
 - Windows batch memakai %% untuk persen literal dan ^ untuk line continuation.
 - Hindari command line CMD melebihi 8191 karakter.
 - Filter graph tetap inline.
-- Semua font, musik, dan SFX harus punya sumber/lisensi.
+- Semua font, musik, dan SFX harus punya sumber/lisensi dan hash.
+- Jika SFX digunakan, sertakan `audio-design.json`, `render_audio_events.py`, dan aset yang benar-benar dirujuk. Jalankan audio pass setelah base render; jangan menyertakan aset yang tidak dipakai.
 
 ### 3. Uji paket
 - Smoke test render beberapa detik.
@@ -85,7 +88,9 @@ Contoh belum diuji pada runtime pengguna.
 - [ ] Hanya FFmpeg wajib untuk render dasar.
 - [ ] Tidak ada filter_complex_script.
 - [ ] Script PC dan Windows tersedia bila diminta.
-- [ ] Semua asset punya sumber/lisensi.
+- [ ] Semua asset punya sumber/lisensi dan hash.
+- [ ] Audio design plan dan SFX pass disertakan bila efek suara digunakan.
+- [ ] Audio final didengar manusia, bukan hanya lolos limiter.
 - [ ] Instruksi Colab dapat disalin dari HP.
 - [ ] Smoke test dan QA report tersedia bila environment memungkinkan.
 
