@@ -18,7 +18,7 @@ A sound effect should reinforce a real source event or a clearly editorial empha
 - Store all event `at_s` values in the rendered output clock.
 - Link each event to one or more evidence IDs from the edit plan.
 - For word emphasis, also link `word_ids`; use the mapped onset of the first linked word. The renderer rejects events more than 200 ms away from that onset.
-- For motion, link verified visual-inspection evidence and place the event within the corresponding motion shot.
+- For motion, link verified visual-inspection evidence and place the event inside the mapped output interval of the observed movement. A camera move is one possible trigger, not the only one.
 - For transition, align the event within 120 ms of a real shot boundary.
 - Preserve the original dialogue and causal order. Never move an SFX to imply a different cause.
 
