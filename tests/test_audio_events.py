@@ -27,7 +27,8 @@ def edit_fixture(source_hash: str, duration: float = 2.0):
              'editorial': {'camera': {'action': 'hold'}}},
         ],
         'editorial': {'evidence': [
-            {'id': 'ev-motion', 'status': 'VERIFIED', 'method': 'visual-inspection'},
+            {'id': 'ev-motion', 'status': 'VERIFIED', 'method': 'visual-inspection',
+             'in_s': 0.25, 'out_s': 0.55, 'observation': 'Avatar makes a visible head movement.'},
             {'id': 'ev-word', 'status': 'VERIFIED', 'method': 'audio-review'},
         ]},
     }
