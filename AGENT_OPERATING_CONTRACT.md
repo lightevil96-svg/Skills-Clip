@@ -45,8 +45,9 @@ Never let a lower-level heuristic override explicit user direction or source evi
 7. Let the selected specialists implement decisions in one edit plan, including
    source evidence, timing, intensity and a simpler alternative for each shot.
 8. When SFX are requested or materially improve a beat, create a separate
-   `audio-design.json` linked to the edit plan and verified transcript. Generate
-   or resolve licensed assets, record SHA-256, then run the dedicated audio pass.
+   `audio-design.json` linked to the edit plan and, for word emphasis, the
+   verified transcript. Generate or resolve licensed assets, record SHA-256,
+   then run the dedicated audio pass.
 9. Validate the plan, prepare assets/commands and preview representative beats.
 10. Render and inspect the actual output. Revise decisions after preview if needed.
 11. Run technical QA, then editorial QA. Record automated, audiovisual-agent and
