@@ -13,6 +13,7 @@ the checked-in schemas. Install developer dependencies with
 | transcript | 2.0 | Word IDs, language, source clock and verification receipts |
 | style-profile | 1.0 | Scoped reference observations and adaptations |
 | editorial-review | 1.0 | Ten scored dimensions, evidence and separate human/technical review |
+| audio-design | 1.0 | Separate output-clock SFX events, evidence/word links, licensed asset hashes and voice-priority mix |
 | common | definitions | Shared evidence, receipt, crop and status types |
 
 ## Clocks and IDs
@@ -22,6 +23,10 @@ the checked-in schemas. Install developer dependencies with
   evidence use original source time. Compensate extraction/stream offsets.
 - Shot `output_in_s/output_out_s`, captions, effects and keyframe `at_s` use
   output time starting at zero. Shots tile the output without gaps or overlaps.
+- `audio-design.json` is a separate artifact. Its event `at_s` and `duration_s`
+  use the final rendered output clock, not source time. Each event references
+  edit-plan evidence; word-emphasis additionally references verified transcript
+  word IDs. Asset paths are relative to the audio-design file and SHA-256 checked.
 - Without a time_map, shot duration must equal source duration. A time_map is
   contiguous piecewise linear play segments or explicit single-instant freezes.
   Ramps require multiple pieces. It describes timing, not an implemented filter.
