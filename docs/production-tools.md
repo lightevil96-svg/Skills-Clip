@@ -104,6 +104,41 @@ simpler alternative. Never strip fields simply to bypass the check.
 Plans also have a portable 28,000-character command budget. Longer graphs need
 a separately tested segmented renderer; the tool will not truncate the graph.
 
+## Procedural SFX pack and evidence-linked audio pass
+
+The base EDL renderer intentionally preserves source audio and rejects SFX,
+BGM, ducking and other unimplemented treatments. For expressive SFX, keep the
+visual edit plan unchanged and create a separate `audio-design.json` using
+`schemas/audio-design.schema.json`.
+
+Generate six original synthesized starter accents (no third-party samples):
+
+```bash
+python scripts/generate_sfx_pack.py --output-dir work/audio-assets
+```
+
+The pack contains `soft-pop`, `word-tick`, `whoosh-short`, `soft-impact`,
+`sparkle`, and `boing-soft` WAV files plus a SHA-256 manifest. They are simple
+procedural accents, not realistic Foley. Listen to them and select only those
+that suit the source. External assets are allowed only with documented source,
+license and SHA-256. Keep asset paths relative to the audio-design file.
+
+After the ordinary EDL preview is rendered, apply the audio event plan:
+
+```bash
+python scripts/render_audio_events.py --video work/preview/preview.mp4 --audio-plan work/audio-design.json --edit-plan work/edit-plan.json --transcript work/transcript.json --output-dir work/audio-preview
+```
+
+`--transcript` is required when any event uses `trigger: word-emphasis`. All
+events use output seconds and must link to evidence IDs in the matching edit
+plan. Word accents must map to verified word IDs; motion cues need verified visual evidence mapped to the observed movement;
+transition cues must align to a real shot boundary. Assets are hash-checked and paths cannot escape the audio
+plan directory. The renderer limits the plan to 60 events and at most two
+simultaneous SFX events, preserves the video stream, mixes AAC 48 kHz, applies
+source-mix sidechain ducking and a conservative peak limiter. It does not isolate
+voice stems or normalize loudness. Output is `preview-with-sfx.mp4` plus
+`audio-mix-receipt.json`; technical PASS is not final audio approval.
+
 The work directory records the plan snapshot, argv command, filtergraph, output
 probe, output hash and technical receipt. Output is always `preview.mp4` with
 delivery REVIEW. Native-frame count, codec, dimensions, audio timing and full

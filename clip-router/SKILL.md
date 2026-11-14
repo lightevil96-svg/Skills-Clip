@@ -38,6 +38,7 @@ Ambil tujuan platform, bahasa, target durasi, gaya referensi, apakah pengguna me
 | Collab, reaction chain, group banter, beberapa avatar | vtuber-collab-reaction-clip | transcript-and-speaker-pipeline, caption-design |
 | Hanya perlu menemukan momen terbaik | hook-pacing-retention | transcript-and-speaker-pipeline |
 | Butuh transkrip/speaker map | transcript-and-speaker-pipeline | caption-design |
+| Editing dialog/gerak dengan aksen audio atau SFX | audio-mix-and-sfx | editorial-intelligence, transcript-and-speaker-pipeline |
 | Butuh paket PC/HP/Colab | render-package-for-user | ffmpeg-vertical-quality, qa-and-self-review |
 
 Jika konten campuran, segmentasikan berdasarkan beat dan tentukan rute per segmen.
@@ -75,7 +76,7 @@ Perbaiki error struktural; unknown perseptual tetap REVIEW. Contoh legacy yang
 valid tidak otomatis menjadi siap render atau siap delivery.
 
 ### 5. Render dan QA
-Panggil ffmpeg-vertical-quality, audio-mix-and-sfx, render-package-for-user, dan qa-and-self-review sesuai kebutuhan. Pisahkan hasil otomatis dari penilaian manusia.
+Panggil ffmpeg-vertical-quality, audio-mix-and-sfx, render-package-for-user, dan qa-and-self-review sesuai kebutuhan. Jika SFX diminta atau memang meningkatkan beat, buat `audio-design.json` terpisah, render base EDL lebih dulu, lalu jalankan `scripts/render_audio_events.py`. Word-emphasis wajib memakai transcript terverifikasi; jangan menempelkan efek pada setiap kata atau cut. Pisahkan hasil otomatis dari penilaian manusia.
 
 ## Potongan FFmpeg
 Contoh pemeriksaan metadata, bukan perintah render final:

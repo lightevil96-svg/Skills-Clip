@@ -193,3 +193,47 @@ FAIL criteria: valid JSON treated as finished editing, untested scripts called t
 Common mistakes: running every skill, disconnected plans, scoring unobserved footage, claiming cross-platform tests from Linux only.
 Evidence required: brief, source hash, route, evidence ledger, transcript, EDL, commands/tool versions, render, technical/editorial/human QA and package inventory.
 Execution status: NOT_RUN without a complete source-to-delivery run on real footage.
+
+
+## Gate 9 — Expressive sound design
+Input scenario: dialogue-led VTuber clip with one key phrase, a visible camera move and a playful reaction.
+PASS: each SFX is linked to verified evidence; word accents map to verified word IDs; motion/transition cues align to visible events; voice remains clear; asset hashes/licenses are recorded.
+FAIL: effects are placed on every word/cut, a guessed emotion is sonified, or SFX masks dialogue.
+Evidence required: edit plan, verified transcript, audio-design.json, asset manifest, base preview, SFX preview, audio-mix receipt and human listening report.
+Execution status: NOT_RUN until real footage and listening review are completed.
+
+## E13 Word-accent timing
+Input scenario: a verified punchline word follows a hesitation and changes the sentence meaning.
+Expected editorial behavior: use at most one quiet pop/tick on the key word, preserve the hesitation, and keep the word intelligible.
+PASS criteria: event links to verified word IDs and lands within the mapped output onset window; no SFX is required if the word is already clear.
+FAIL criteria: accent is based only on subtitle color, ASR_RAW text, or a guessed word.
+Common mistakes: placing the pop before the word, covering a plosive, or accenting every caption token.
+Evidence required: transcript receipt, source/output mapping, audio-design plan and listened preview.
+Execution status: NOT_RUN without verified source audio and final listening.
+
+## E14 Motion and reaction sync
+Input scenario: a VTuber makes a visible movement followed by a clearly observed reaction.
+Expected editorial behavior: use one whoosh at the motion onset or one light reaction accent after the reaction begins, not both by default.
+PASS criteria: event is source-linked, restrained and synchronized; the simpler no-SFX alternative is compared.
+FAIL criteria: whoosh on idle movement, boing on ambiguous expression, or an impact implying an action that did not occur.
+Common mistakes: treating every camera keyframe as a reason for sound.
+Evidence required: inspected frames, source motion interval, evidence IDs and SFX preview.
+Execution status: NOT_RUN until audiovisual review.
+
+## E15 Voice-priority mix
+Input scenario: source has one mixed stereo voice/game track and two short SFX accents.
+Expected editorial behavior: use conservative SFX gain, source-mix sidechain ducking and peak limiting; do not claim isolated voice processing.
+PASS criteria: dialogue remains intelligible on earphones and phone speaker; receipt describes the mixed-source limitation.
+FAIL criteria: loudness meter alone certifies comfort or the SFX overwhelms speech.
+Common mistakes: excessive bass, aggressive limiter, continuous pumping.
+Evidence required: input/output probe, mix receipt, loudness analysis and human listening report.
+Execution status: NOT_RUN until human listening.
+
+## E16 Asset integrity and event bounds
+Input scenario: audio plan references a generated or licensed WAV asset with a declared hash.
+Expected editorial behavior: resolve relative paths, verify hashes, output-clock duration, evidence links and event overlap limits.
+PASS criteria: path traversal, mismatched hash, out-of-range event, unverified word and excessive overlap are rejected.
+FAIL criteria: renderer silently ignores a missing/unsupported asset or continues after a validation error.
+Common mistakes: absolute machine-specific paths and untracked third-party sounds.
+Evidence required: schema validation, unit tests, FFmpeg integration test and receipt.
+Execution status: automated synthetic tests only until CI executes the new branch.

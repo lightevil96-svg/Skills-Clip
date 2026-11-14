@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skills-clip.example/schemas/audio-design.schema.json",
+  "title": "Skills-Clip Audio Design",
+  "description": "Evidence-linked sound-effect events on the rendered output timeline.",
+  "type": "object",
+  "required": ["schema_version", "project_id", "source_sha256", "output_duration_s", "assets", "events", "mix"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "project_id": {"type": "string", "minLength": 1},
+    "source_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "output_duration_s": {"type": "number", "exclusiveMinimum": 0},
+    "assets": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": ["id", "path", "source", "license", "sha256"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-zA-Z0-9_-]{1,64}$"},
+          "path": {"type": "string", "minLength": 1},
+          "source": {"type": "string", "minLength": 1},
+          "license": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "events": {
+      "type": "array",
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "required": ["id", "trigger", "at_s", "duration_s", "asset_id", "gain_db", "evidence_ids", "reason"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-zA-Z0-9_-]{1,64}$"},
+          "trigger": {"enum": ["motion", "word-emphasis", "reaction", "transition", "impact", "other"]},
+          "at_s": {"type": "number", "minimum": 0},
+          "duration_s": {"type": "number", "minimum": 0.02, "maximum": 3.0},
+          "asset_id": {"type": "string", "minLength": 1},
+          "gain_db": {"type": "number", "minimum": -36, "maximum": -6},
+          "fade_in_s": {"type": "number", "minimum": 0, "maximum": 3, "default": 0},
+          "fade_out_s": {"type": "number", "minimum": 0, "maximum": 3, "default": 0},
+          "ducking": {"type": "boolean", "default": true},
+          "word_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "evidence_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "reason": {"type": "string", "minLength": 8}
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"trigger": {"const": "word-emphasis"}}, "required": ["trigger"]},
+            "then": {"required": ["word_ids"], "properties": {"word_ids": {"minItems": 1}}}
+          }
+        ],
+        "additionalProperties": false
+      }
+    },
+    "mix": {
+      "type": "object",
+      "required": ["voice_priority", "ducking", "limiter_ceiling"],
+      "properties": {
+        "voice_priority": {"const": true},
+        "ducking": {
+          "type": "object",
+          "required": ["enabled", "threshold_db", "ratio", "attack_ms", "release_ms"],
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "threshold_db": {"type": "number", "minimum": -48, "maximum": -12},
+            "ratio": {"type": "number", "minimum": 1, "maximum": 8},
+            "attack_ms": {"type": "number", "minimum": 1, "maximum": 100},
+            "release_ms": {"type": "number", "minimum": 40, "maximum": 1000}
+          },
+          "additionalProperties": false
+        },
+        "limiter_ceiling": {"type": "number", "minimum": 0.8, "maximum": 0.99}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
+

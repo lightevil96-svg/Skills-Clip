@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "project_id": "synthetic-expressive-audio-example",
+  "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "output_duration_s": 12.0,
+  "assets": [
+    {
+      "id": "soft-pop",
+      "path": "audio-assets/soft-pop.wav",
+      "source": "Generated locally by scripts/generate_sfx_pack.py",
+      "license": "Original procedural asset; no third-party sample or attribution dependency",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    {
+      "id": "whoosh-short",
+      "path": "audio-assets/whoosh-short.wav",
+      "source": "Generated locally by scripts/generate_sfx_pack.py",
+      "license": "Original procedural asset; no third-party sample or attribution dependency",
+      "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    {
+      "id": "sparkle",
+      "path": "audio-assets/sparkle.wav",
+      "source": "Generated locally by scripts/generate_sfx_pack.py",
+      "license": "Original procedural asset; no third-party sample or attribution dependency",
+      "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+    }
+  ],
+  "events": [
+    {
+      "id": "word-pop-01",
+      "trigger": "word-emphasis",
+      "at_s": 2.42,
+      "duration_s": 0.14,
+      "asset_id": "soft-pop",
+      "gain_db": -20,
+      "fade_in_s": 0.0,
+      "fade_out_s": 0.06,
+      "ducking": true,
+      "word_ids": ["w17"],
+      "evidence_ids": ["e3"],
+      "reason": "A verified key word receives one quiet accent without changing its meaning."
+    },
+    {
+      "id": "motion-whoosh-01",
+      "trigger": "motion",
+      "at_s": 5.0,
+      "duration_s": 0.38,
+      "asset_id": "whoosh-short",
+      "gain_db": -22,
+      "fade_in_s": 0.04,
+      "fade_out_s": 0.12,
+      "ducking": true,
+      "evidence_ids": ["e7"],
+      "reason": "A source-supported camera move receives a short, restrained movement accent."
+    },
+    {
+      "id": "reaction-sparkle-01",
+      "trigger": "reaction",
+      "at_s": 8.2,
+      "duration_s": 0.48,
+      "asset_id": "sparkle",
+      "gain_db": -24,
+      "fade_in_s": 0.02,
+      "fade_out_s": 0.18,
+      "ducking": true,
+      "evidence_ids": ["e9"],
+      "reason": "A clearly observed playful reaction gets a light accent after its onset."
+    }
+  ],
+  "mix": {
+    "voice_priority": true,
+    "ducking": {
+      "enabled": true,
+      "threshold_db": -30,
+      "ratio": 2.5,
+      "attack_ms": 10,
+      "release_ms": 180
+    },
+    "limiter_ceiling": 0.95
+  }
+}
+

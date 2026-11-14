@@ -24,7 +24,7 @@ This repository is designed so a new AI agent can enter the project, understand 
 | [transcript-and-speaker-pipeline](transcript-and-speaker-pipeline/SKILL.md) | Word-level transcript, timestamps, diarization, speaker ledger |
 | [caption-design](caption-design/SKILL.md) | Verbatim captions, translation, reading aids, speaker colors, safe placement |
 | [hook-pacing-retention](hook-pacing-retention/SKILL.md) | Candidate discovery, hook, setup, escalation, payoff, ending |
-| [audio-mix-and-sfx](audio-mix-and-sfx/SKILL.md) | Voice/game/BGM balance, ducking, loudness, SFX |
+| [audio-mix-and-sfx](audio-mix-and-sfx/SKILL.md) | Evidence-linked word accents, motion/reaction SFX, voice-priority mixing and listening QA |
 | [ffmpeg-vertical-quality](ffmpeg-vertical-quality/SKILL.md) | 16:9-to-9:16 reframing, crop, scaling, encoding |
 | [render-package-for-user](render-package-for-user/SKILL.md) | Portable ZIP, Windows/Linux scripts, PC and Colab instructions |
 | [qa-and-self-review](qa-and-self-review/SKILL.md) | Technical and editorial checks before delivery |
@@ -65,6 +65,7 @@ upstream projects to remaining gaps, with exact inspected commits and honest run
 - [Schema and migration guide](schemas/README.md): v1 compatibility, v2 decisions, clocks and verification receipts.
 - [Style profile schema](schemas/style-profile.schema.json): scoped reference traits and adaptations.
 - [Editorial review schema](schemas/editorial-review.schema.json): ten anchored dimensions, reviewer mode and revision evidence.
+- [Audio design schema](schemas/audio-design.schema.json): output-clock SFX events, asset hashes/licenses, word/evidence links and voice-priority mix settings.
 - [Example edit plan](examples/edit-plan.example.json) — dummy data; replace with real source evidence.
 - [Example transcript](examples/transcript.example.json) — dummy ASR_RAW word; not a real quote.
 - [Editorial edit example](examples/edit-plan.editorial.example.json): synthetic v2 decision records with [linked words](examples/transcript.editorial.example.json).
@@ -81,6 +82,7 @@ python scripts/validate_skill_repo.py
 python -m unittest discover -s tests -v
 python scripts/validate_artifacts.py edit-plan examples/edit-plan.editorial.example.json --transcript examples/transcript.editorial.example.json
 python scripts/smoke_ffmpeg.py --output-dir test-results/smoke
+python scripts/generate_sfx_pack.py --output-dir work/audio-assets
 ```
 
 The artifact validator rejects invalid ranges/crops, broken IDs, unsupported
@@ -92,9 +94,14 @@ unverified captions. Existing unversioned examples remain valid as drafts.
 The smoke script executes a small synthetic FFmpeg pan, ASS burn-in, Bash package
 with spaced paths, decode and stream checks. Separately, `render_edl.py` implements
 a bounded v2 preview renderer: direct cuts, explicit crops, fixed-size keyframed
-pans, source audio and verified static dialogue. It rejects unsupported decisions.
+pans, source audio and verified static dialogue. The separate audio event pass
+supports bounded SFX overlays with source-mix ducking and a limiter; it does not
+provide voice-stem separation, BGM generation or loudness mastering. Both stages
+reject unsupported decisions.
 `inspect_source.py`, `asr_bridge.py` and `verify_evidence.py` add real media bundles,
-word imports and file-integrity checks. See the production guide for commands.
+word imports and file-integrity checks. `generate_sfx_pack.py` creates six original
+procedural accents; `render_audio_events.py` overlays evidence-linked SFX after the
+base EDL preview. See the production guide for commands.
 Python/jsonschema/PyYAML are developer validation dependencies, separate from
 FFmpeg/FFprobe for basic rendering. Only actually tested builds/platforms may
 be reported PASS. Missing tools fail explicitly instead of silently skipping.
